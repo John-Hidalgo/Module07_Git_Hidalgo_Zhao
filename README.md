@@ -1,10 +1,25 @@
 ### Liste du taches
 
 ## John
-
-
-Répertoire de pages 30 minutes. La page du formulaire dure environ 45 minutes. L’api pour obtenir tout doit prendre 30 minutes. 
-L’API Post prend 30 minutes. Et l’API PUT doit prendre 35 minutes
-
-
+---------------------------------|---------------
+      RÃ©pertoire de pages        |   30
+---------------------------------|---------------
+      Page du formulaire         |   45
+---------------------------------|---------------
+      Get/api/pieces             |   30
+---------------------------------|---------------
+      Post/api/pieces/ajouter    |   30
+---------------------------------|---------------
+PUT/api/pieces/:id/modifier      |   35
+---------------------------------|---------------
 ## ChangFeng
+---------------------------------|---------------
+      Page admin                 |   30
+---------------------------------|---------------
+      Page accueil               |   45
+---------------------------------|---------------
+      Get/api/pieces/:id         |   30
+---------------------------------|---------------
+      Delete/api/pieces/:id      |   30
+---------------------------------|---------------
+
