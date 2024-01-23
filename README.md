@@ -1,7 +1,7 @@
 ### Liste du taches
 
 ## John
-|   |   |
+|  tache |  temps |
 |---|---|
 |   |   |
 |      Répertoire de pages        |   30          |
@@ -12,7 +12,7 @@
 
 
 ## ChangFeng
-|   |   |
+|  tache | temps  |
 |---|---|
 |      Page admin                 |   30 |
 |      Page accueil               |   45 |
