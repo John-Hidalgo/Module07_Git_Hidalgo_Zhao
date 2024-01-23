@@ -3,7 +3,6 @@
 ## John
 |  tache |  temps |
 |---|---|
-|   |   |
 |      Répertoire de pages        |   30          |
 |      Page du formulaire         |   45          |
 |      Get/api/pieces             |   30          |
