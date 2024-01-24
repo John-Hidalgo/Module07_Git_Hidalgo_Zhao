@@ -7,7 +7,7 @@ app.use(express.json())
 
 app.get('/api/pieces/:id', GererObtiensUnePiece);
 app.post('/api/pieces/ajouter', GererAjouterUnePiece);
-app.put('/api/pieces/:id/modifier ', GererModifierUnePiece);
+app.put('/api/pieces/:id/modifier', GererModifierUnePiece);
 
 async function GererObtiensUnePiece(req,rep)
 {
@@ -30,12 +30,36 @@ async function GererAjouterUnePiece(req, rep)
                 categorie
             });
             rep.status(200).send("Pièce ajoutée");
-        }, rep)
-            .catch(() => rep.status(500).send("Erreur : la pièce n'a pas été ajoutée"))
+        }, rep).catch(() => rep.status(500).send("Erreur : la pièce n'a pas été ajoutée"))
         : rep.status(400).send(`Certains paramètres ne sont pas définis: - titre: ${titre} - artiste: ${artiste} - categorie: ${categorie}`);
 }
 async function GererModifierUnePiece(req, rep)
 {
+    const idPiece = req.params.id;
+    const { titre, artiste, categorie } = req.body;
+    if (titre !== undefined || artiste !== undefined || categorie !== undefined)
+    {
+        UtiliserBD(async (BD) =>
+        {
+            const updateObject = {};
+            if (titre !== undefined) updateObject.titre = titre;
+            if (artiste !== undefined) updateObject.artiste = artiste;
+            if (categorie !== undefined) updateObject.categorie = categorie;
+            const result = await BD.collection('pieces').updateOne({ _id: new ObjectId(idPiece) }, { $set: updateObject });
+            if (result.modifiedCount > 0)
+            {
+                rep.status(200).send("Pièce modifiée avec succès");
+            }
+            else
+            {
+                rep.status(404).send("Aucune pièce trouvée avec l'ID fourni");
+            }
+        }, rep).catch(() => rep.status(500).send("Erreur : la pièce n'a pas été modifiée"));
+    }
+    else
+    {
+        rep.status(400).send("Aucun paramètre de modification fourni");
+    }
 
 }
 
