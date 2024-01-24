@@ -6,7 +6,7 @@ const app = express()
 app.use(express.json())
 
 app.get('/api/pieces/:id', GererObtiensUnePiece);
-app.post('/api/pieces/ajouter ', GererAjouterUnePiece);
+app.post('/api/pieces/ajouter', GererAjouterUnePiece);
 app.put('/api/pieces/:id/modifier ', GererModifierUnePiece);
 
 async function GererObtiensUnePiece(req,rep)
@@ -20,7 +20,19 @@ async function GererObtiensUnePiece(req,rep)
 }
 async function GererAjouterUnePiece(req, rep)
 {
-
+    const { titre, artiste, categorie } = req.body;
+    titre !== undefined && artiste !== undefined && categorie !== undefined ?
+        UtiliserBD(async (BD) => 
+        {
+            await BD.collection('pieces').insertOne({
+                titre,
+                artiste,
+                categorie
+            });
+            rep.status(200).send("Pièce ajoutée");
+        }, rep)
+            .catch(() => rep.status(500).send("Erreur : la pièce n'a pas été ajoutée"))
+        : rep.status(400).send(`Certains paramètres ne sont pas définis: - titre: ${titre} - artiste: ${artiste} - categorie: ${categorie}`);
 }
 async function GererModifierUnePiece(req, rep)
 {
@@ -44,13 +56,12 @@ async function UtiliserBD(operations, reponse)
     {
         //console.error('Error connecting to the database:', error);
         reponse.status(500).json({ message: 'Erreur de connexion à la base de donnée:', error });
-    }
-    
+    }  
 }
 
 //REST_API
-app.get('/api/hello', (requete, reponse) => { reponse.send("Hello World!") })
+app.get('/api/hello', (requete, reponse) => { reponse.send("Hello World!") });
 
 
-app.listen(8000, () => console.log('Ecoute le port 8000'))
+app.listen(8000, () => console.log('Ecoute le port 8000'));
 
