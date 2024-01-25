@@ -5,13 +5,14 @@ const PageRepertoireClients = () =>
 {
     const repertoire = Repertoire();
     return (
-        <>
-            <h1>Liste du repertoire</h1>
-            {
-                repertoire.map(p => (p.titre
-                ))
-            }
-        </>
+        <div>
+            <h2>Liste du repertoire</h2>
+            <ul>
+                {repertoire.map((p) => (
+                    <li key={p._id}> {p.titre} {p.artiste} { p.categoire} </li>
+                ))}
+            </ul>
+        </div>
     )
 }
 
