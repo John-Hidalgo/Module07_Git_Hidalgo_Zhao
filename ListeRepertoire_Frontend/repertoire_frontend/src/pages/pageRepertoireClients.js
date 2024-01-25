@@ -9,7 +9,7 @@ const PageRepertoireClients = () =>
             <h2>Liste du repertoire</h2>
             <ul>
                 {repertoire.map((p) => (
-                    <li key={p._id}> {p.titre} {p.artiste} { p.categoire} </li>
+                    <li key={p._id}> {p.titre} {p.artiste} { p.categorie} </li>
                 ))}
             </ul>
         </div>
