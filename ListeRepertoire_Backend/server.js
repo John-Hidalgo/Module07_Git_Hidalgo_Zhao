@@ -7,31 +7,30 @@ app.use(express.json())
 app.get('/api/pieces/:id', GererObtiensUnePiece)
 app.post('/api/pieces/ajouter', GererAjouterUnePiece)
 app.put('/api/pieces/:id/modifier', GererModifierUnePiece)
+app.delete('/api/pieces/:id/supprimer', GererSupprimer)
+app.get('/api/pieces', GererTousPieces)
 //--------------------------------------------------------------------
-
-app.get('/api/pieces', async (requete, reponse) => {
-    UtiliserBD(async (db) => {
-        const pieces = await db.collection('pieces').find().toArray()
+async function GererTousPieces (requete, reponse) {
+    UtiliserBD(async (BD) => {
+        const pieces = await BD.collection('pieces').find().toArray()
         reponse.status(200).json(pieces)
     }, reponse)
-})
+}
 
-app.delete('/api/pieces/:id/supprimer', (requete, reponse) => {
-    //valide param
-    const { pieceId } = requete.params.id
-    if (pieceId != undefined && pieces != "") {
-        UtiliserBD(async (db) => {
-            const resultat = await db.collection('pieces').deleteOne({ _id: new ObjectId(pieceId) })
-            if (resultat.deletedCount === 1) {
-                reponse.status(200).send(`${resultat.deletedCount} piece supprime`)
-            } else {
-                reponse.status(500).send("La piece n'a pas ete supprime")
-            }
-        }, reponse).catch(
-            () => reponse.status(500).send("Erreur: la piece n'a pas ete supprime")
-        )
-    }
-})
+async function GererSupprimer (requete, reponse) {
+    const pieceId = requete.params.id
+    UtiliserBD(async (BD) => {
+        const resultat = await BD.collection('pieces').deleteOne({ _id: new ObjectId(pieceId) })
+        console.log(resultat)
+        if (resultat.deletedCount === 1) {
+            reponse.status(200).send(`${resultat.deletedCount} piece supprime`)
+        } else {
+            reponse.status(404).send("La piece n'a pas trouve")
+        }
+    }, reponse).catch(
+        () => reponse.status(500).send("Erreur: la piece n'a pas ete supprime")
+    )
+}
 // -------------------------------------------------------------------
 
 async function GererObtiensUnePiece (req, rep) {
@@ -50,11 +49,12 @@ async function GererAjouterUnePiece (req, rep) {
                 artiste,
                 categorie
             })
-            rep.status(200).send("Pi�ce ajout�e")
-        }, rep).catch(() => rep.status(500).send("Erreur : la pi�ce n'a pas �t� ajout�e"))
-        : rep.status(400).send(`Certains param�tres ne sont pas d�finis: - titre: ${titre} - artiste: ${artiste} - categorie: ${categorie}`)
+            rep.status(200).send("Piece ajoutee")
+        }, rep).catch(() => rep.status(500).send("Erreur : la piece n'a pas ete ajoutee"))
+        : rep.status(400).send(`Certains parametres ne sont pas definis: - titre: ${titre} - artiste: ${artiste} - categorie: ${categorie}`)
 }
-async function GererModifierUnePiece (req, rep) {
+
+async function GererModifierUnePiece (req, rep) {  //marche pas
     const idPiece = req.params.id
     const { titre, artiste, categorie } = req.body
     if (titre !== undefined || artiste !== undefined || categorie !== undefined) {
@@ -65,15 +65,15 @@ async function GererModifierUnePiece (req, rep) {
             if (categorie !== undefined) updateObject.categorie = categorie
             const result = await BD.collection('pieces').updateOne({ _id: new ObjectId(idPiece) }, { $set: updateObject })
             if (result.modifiedCount > 0) {
-                rep.status(200).send("Pi�ce modifi�e avec succ�s")
+                rep.status(200).send("Piece modifiee avec succes")
             }
             else {
-                rep.status(404).send("Aucune pi�ce trouv�e avec l'ID fourni")
+                rep.status(404).send("Aucune piece trouvee avec l'ID fourni")
             }
-        }, rep).catch(() => rep.status(500).send("Erreur : la pi�ce n'a pas �t� modifi�e"))
+        }, rep).catch(() => rep.status(500).send("Erreur : la piece n'a pas ete modifiee"))
     }
     else {
-        rep.status(400).send("Aucun param�tre de modification fourni")
+        rep.status(400).send("Aucun parametre de modification fourni")
     }
 
 }

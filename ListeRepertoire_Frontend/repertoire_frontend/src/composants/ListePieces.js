@@ -1,33 +1,40 @@
 import React from "react"
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Alert from 'react-bootstrap/Alert'
-import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { useState } from "react"
+import Table from 'react-bootstrap/Table'
+import 'bootstrap/dist/css/bootstrap.min.css'
 export function ListePieces ({ pieces, handlClickDelete, handlClickModifier }) {
     return (
-        <Table>{
-            pieces.map((p, index) => {
-                <Row>
-                    <Col>
-                        <div>{p.titre}</div>
-                    </Col>
-                    <Col>
-                        <div>{p.artiste}</div>
-                    </Col>
-                    <Col>
-                        <div>{p.categorie}</div>
-                    </Col>
-                    <Col>
-                        <Button alt={index} variant="danger" onClick={() => handlClickDelete(index)} size="sm" className="m-1">Delete</Button>
-                    </Col>
-                    <Col>
-                        <Button alt={index} variant="warning" onClick={() => handlClickModifier(index)} size="sm" className="m-1">Modifier</Button>
-                    </Col>
-                </Row>
-            })}
+        <Table className="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Artiste</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {pieces.map((p, index) => {
+                    return (
+                        <tr key={index}>
+                            <th>{index + 1}</th>
+                            <td id=""><input type="text" id={index + "titre"} placeholder={p.titre} /></td>
+                            <td id=""><input type="text" id={index + "artiste"} placeholder={p.artiste} /></td>
+                            <td id=""><input type="text" id={index + "categorie"} placeholder={p.categorie} /></td>
+                            <td>
+                                <Button alt={index} variant="danger" onClick={() => handlClickDelete(p._id)} size="sm" className="m-1">Delete</Button>
+                                <Button alt={index} variant="warning" onClick={() => {
+                                    const newTitre = document.getElementById(index + "titre").value
+                                    const newArtiste = document.getElementById(index + "artiste").value
+                                    const newCategorie = document.getElementById(index + "categorie").value
+                                    handlClickModifier(p._id, { newTitre, newArtiste, newCategorie })
+                                }} size="sm" className="m-1">Modifier</Button>
+                            </td>
+                        </tr>
+                    )
+                })}
+            </tbody>
         </Table >
     )
 }
