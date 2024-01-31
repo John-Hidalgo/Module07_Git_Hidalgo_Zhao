@@ -22,7 +22,7 @@ function App () {
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/pieces" element={<PageRepertoireClients />} />
+          <Route path="/articles" element={<PageRepertoireClients />} />
           <Route path="/ajouter" element={<Ajouter />} />
           <Route path="*" element={<Page404 />} />
         </Routes>

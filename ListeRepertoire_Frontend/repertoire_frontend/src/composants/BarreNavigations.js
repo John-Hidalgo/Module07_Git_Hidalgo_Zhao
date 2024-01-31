@@ -13,8 +13,8 @@ export const BarreNavigation = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/admin">Admin</Nav.Link>
-                        <Nav.Link href="/pieces">Pieces</Nav.Link>
-                        <Nav.Link href="/ajouter">Pieces</Nav.Link>
+                        <Nav.Link href="/articles">Pieces</Nav.Link>
+                        <Nav.Link href="/ajouter">Ajouter</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

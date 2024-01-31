@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css'
 export function ListePieces ({ pieces, handlClickDelete, handlClickModifier }) {
+    pieces.sort((a, b) =>
+        (a.categorie > b.categorie) ? 1 : -1)
     return (
         <Table className="table table-striped table-dark">
             <thead>

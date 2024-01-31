@@ -1,4 +1,5 @@
 import React from "react"
+import Piece from './Piece.js'
 
 const ModifierPiece = (id, titre, artiste, categorie) => {
     const [pieces, setPieces] = useState([]) //initialiser avec [] vide
