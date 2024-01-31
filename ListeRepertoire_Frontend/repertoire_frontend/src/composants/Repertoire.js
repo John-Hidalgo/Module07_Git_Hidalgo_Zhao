@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 const Repertoire = () =>
 {
@@ -23,4 +23,4 @@ const Repertoire = () =>
     return pieces;
 }
 
-export default Repertoire;
+export default Repertoire
