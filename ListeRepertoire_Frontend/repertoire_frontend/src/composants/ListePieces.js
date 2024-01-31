@@ -6,6 +6,7 @@ import Alert from 'react-bootstrap/Alert'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useState } from "react"
+import Table from 'react-bootstrap/Table';
 export function ListePieces ({ pieces, handlClickDelete, handlClickModifier }) {
     return (
         <Table>{
