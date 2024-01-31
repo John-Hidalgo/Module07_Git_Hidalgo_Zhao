@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 
 const Repertoire = () => {
-    const [piece, setPiece] = useState([]) //initialiser avec [] vide
+    const [pieces, setPieces] = useState([])
     useEffect(() => {
         const obtiensPieces = async () => {
             try {
+                console.log("calling fetch")
                 const reponse = await fetch('/api/pieces')
                 const data = await reponse.json()
-                setPiece(data)
+                setPieces(data)
             }
             catch (erreur) {
                 console.error(erreur)
@@ -15,6 +16,6 @@ const Repertoire = () => {
         }
         obtiensPieces()
     }, [])
-    return piece
+    return pieces
 }
 export default Repertoire

@@ -1,9 +1,8 @@
 import React from 'react'
-import Repertoire from '../composants/Repertoire'
+import Repertoire from '../composants/Repertoire.js'
 
 const PageRepertoireClients = () => {
     const repertoire = Repertoire()
-    // console.log(repertoire)//undefined
     return (
         <div>
             <h2>Liste du repertoire</h2>
