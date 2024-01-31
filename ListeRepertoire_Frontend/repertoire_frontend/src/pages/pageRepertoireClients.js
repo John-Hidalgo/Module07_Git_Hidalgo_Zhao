@@ -1,5 +1,5 @@
 import React from 'react';
-import Repertoire from '../composants/Repertoire';
+import Repertoire from '../composants/Repertoire.js';
 
 const PageRepertoireClients = () =>
 {

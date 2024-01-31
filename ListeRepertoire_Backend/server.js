@@ -9,6 +9,13 @@ app.get('/api/pieces/:id', GererObtiensUnePiece);
 app.post('/api/pieces/ajouter', GererAjouterUnePiece);
 app.put('/api/pieces/:id/modifier', GererModifierUnePiece);
 
+app.get('/api/pieces', async (requete, reponse) => {
+    UtiliserBD(async (db) => {
+        const pieces = await db.collection('pieces').find().toArray()
+        reponse.status(200).json(pieces)
+    }, reponse)
+})
+
 async function GererObtiensUnePiece(req,rep)
 {
     UtiliserBD(async (BD) =>
@@ -29,9 +36,9 @@ async function GererAjouterUnePiece(req, rep)
                 artiste,
                 categorie
             });
-            rep.status(200).send("Pièce ajoutée");
-        }, rep).catch(() => rep.status(500).send("Erreur : la pièce n'a pas été ajoutée"))
-        : rep.status(400).send(`Certains paramètres ne sont pas définis: - titre: ${titre} - artiste: ${artiste} - categorie: ${categorie}`);
+            rep.status(200).send("Piï¿½ce ajoutï¿½e");
+        }, rep).catch(() => rep.status(500).send("Erreur : la piï¿½ce n'a pas ï¿½tï¿½ ajoutï¿½e"))
+        : rep.status(400).send(`Certains paramï¿½tres ne sont pas dï¿½finis: - titre: ${titre} - artiste: ${artiste} - categorie: ${categorie}`);
 }
 async function GererModifierUnePiece(req, rep)
 {
@@ -48,17 +55,17 @@ async function GererModifierUnePiece(req, rep)
             const result = await BD.collection('pieces').updateOne({ _id: new ObjectId(idPiece) }, { $set: updateObject });
             if (result.modifiedCount > 0)
             {
-                rep.status(200).send("Pièce modifiée avec succès");
+                rep.status(200).send("Piï¿½ce modifiï¿½e avec succï¿½s");
             }
             else
             {
-                rep.status(404).send("Aucune pièce trouvée avec l'ID fourni");
+                rep.status(404).send("Aucune piï¿½ce trouvï¿½e avec l'ID fourni");
             }
-        }, rep).catch(() => rep.status(500).send("Erreur : la pièce n'a pas été modifiée"));
+        }, rep).catch(() => rep.status(500).send("Erreur : la piï¿½ce n'a pas ï¿½tï¿½ modifiï¿½e"));
     }
     else
     {
-        rep.status(400).send("Aucun paramètre de modification fourni");
+        rep.status(400).send("Aucun paramï¿½tre de modification fourni");
     }
 
 }
@@ -79,7 +86,7 @@ async function UtiliserBD(operations, reponse)
     catch (error)
     {
         //console.error('Error connecting to the database:', error);
-        reponse.status(500).json({ message: 'Erreur de connexion à la base de donnée:', error });
+        reponse.status(500).json({ message: 'Erreur de connexion ï¿½ la base de donnï¿½e:', error });
     }  
 }
 
