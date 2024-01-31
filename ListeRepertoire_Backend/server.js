@@ -16,6 +16,24 @@ app.get('/api/pieces', async (requete, reponse) => {
     }, reponse)
 })
 
+app.delete('/api/pieces/:id/supprimer', (requete, reponse) => {
+    //valide param
+    const { pieceId } = requete.params.id
+    if (pieceId != undefined && pieces != "") {
+        UtiliserBD(async (db) => {
+            const resultat = await db.collection('pieces').deleteOne({ _id: new ObjectId(pieceId) })
+            if (resultat.deletedCount === 1) {
+                reponse.status(200).send(`${resultat.deletedCount} piece supprime`)
+            } else {
+                reponse.status(500).send("La piece n'a pas ete supprime")
+            }
+        }, reponse).catch(
+            () => reponse.status(500).send("Erreur: la piece n'a pas ete supprime")
+        )
+    }
+})
+// -------------------------------------------------------------------
+
 async function GererObtiensUnePiece(req,rep)
 {
     UtiliserBD(async (BD) =>
@@ -87,7 +105,7 @@ async function UtiliserBD(operations, reponse)
     {
         //console.error('Error connecting to the database:', error);
         reponse.status(500).json({ message: 'Erreur de connexion � la base de donn�e:', error });
-    }  
+    }
 }
 
 //REST_API

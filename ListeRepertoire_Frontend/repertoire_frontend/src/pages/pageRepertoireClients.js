@@ -1,7 +1,7 @@
 import React from 'react';
 import Repertoire from '../composants/Repertoire.js';
 
-const PageRepertoireClients = () =>
+const PageRepertoireClients = () => 
 {
     const repertoire = Repertoire();
     return (
