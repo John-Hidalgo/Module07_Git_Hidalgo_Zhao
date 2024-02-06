@@ -15,6 +15,7 @@ export const BarreNavigation = () => {
                         <Nav.Link href="/admin">Admin</Nav.Link>
                         <Nav.Link href="/articles">Pieces</Nav.Link>
                         <Nav.Link href="/ajouter">Ajouter</Nav.Link>
+                        <Nav.Link href="/client-repo">Repo</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

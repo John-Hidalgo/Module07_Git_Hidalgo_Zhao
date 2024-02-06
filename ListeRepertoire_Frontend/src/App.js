@@ -6,6 +6,7 @@ import { Ajouter } from './pages/Ajouter'
 import PageRepertoireClients from './pages/pageRepertoireClients.js'
 import Container from 'react-bootstrap/Container'
 import { BarreNavigation } from './composants/BarreNavigations.js'
+import { Client_Repo } from './pages/Client_Repo.js'
 
 //Router
 import {
@@ -24,6 +25,7 @@ function App () {
           <Route path="/admin" element={<Admin />} />
           <Route path="/articles" element={<PageRepertoireClients />} />
           <Route path="/ajouter" element={<Ajouter />} />
+          <Route path="/client-repo" element={<Client_Repo />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Container>
