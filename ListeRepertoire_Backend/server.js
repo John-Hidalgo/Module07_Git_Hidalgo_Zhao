@@ -10,6 +10,8 @@ app.put('/api/pieces/:id/modifier', GererModifierUnePiece)
 app.delete('/api/pieces/:id/supprimer', GererSupprimer)
 app.get('/api/pieces', GererTousPieces)
 app.post('/api/list/ajouter', AjouterUneListeDemande)
+app.get('/api/list/:id', TrouverUneListe)
+app.put('/api/list/:id/modifier', ModifierAjouterUnePieceDansListeDemande)
 //--------------------------------------------------------------------
 async function GererTousPieces (requete, reponse) {
     UtiliserBD(async (BD) => {
@@ -46,6 +48,44 @@ async function AjouterUneListeDemande (requete, reponse) {
         }, reponse).catch(() => reponse.status(500).send("Erreur : la liste n'a pas ete ajoutee"))
         : reponse.status(400).send(`Certains parametres ne sont pas definis: - client: ${client} - liste_demandes: ${liste_demandes} - liste_nom: ${liste_nom}`)
 }
+async function TrouverUneListe (requete, reponse) {
+    UtiliserBD(async (BD) => {
+        const idListe = requete.params.id
+        const liste = await BD.collection('demandes').findOne({ _id: new ObjectId(idListe) })
+        reponse.status(200).json(liste)
+    }, reponse)
+}
+async function ModifierAjouterUnePieceDansListeDemande (requete, reponse) {
+    const idListe = requete.params.id
+    const { titre, artiste, categorie } = requete.body
+    if (titre !== undefined || artiste !== undefined || categorie !== undefined) {
+        UtiliserBD(async (BD) => {
+            const updateObject = {}
+            updateObject.titre = titre
+            updateObject.artiste = artiste
+            updateObject.categorie = categorie
+            //根据id找到源liste
+            const ele = await BD.collection('demandes').findOne({ _id: new ObjectId(idListe) })
+            const oldList = ele['liste_demandes']
+            //update en Rajoutant
+            oldList.push(updateObject)
+            console.log(oldList)
+            const result = await BD.collection('demandes').updateOne({ _id: new ObjectId(idListe) }, { $set: { "liste_demandes": oldList } })
+            if (result.modifiedCount > 0) {
+                reponse.status(200).send("Liste modifiee avec succes")
+            }
+            else {
+                reponse.status(404).send("Aucune liste trouvee avec l'ID fourni")
+            }
+        }, reponse).catch(() => reponse.status(500).send("Erreur : la liste n'a pas ete modifiee"))
+    }
+    else {
+        reponse.status(400).send("Aucun parametre de modification fourni")
+    }
+}
+
+
+
 // -------------------------------------------------------------------
 
 async function GererObtiensUnePiece (req, rep) {
@@ -69,7 +109,7 @@ async function GererAjouterUnePiece (req, rep) {
         : rep.status(400).send(`Certains parametres ne sont pas definis: - titre: ${titre} - artiste: ${artiste} - categorie: ${categorie}`)
 }
 
-async function GererModifierUnePiece (req, rep) {  //marche pas
+async function GererModifierUnePiece (req, rep) {
     const idPiece = req.params.id
     const { titre, artiste, categorie } = req.body
     if (titre !== undefined || artiste !== undefined || categorie !== undefined) {
