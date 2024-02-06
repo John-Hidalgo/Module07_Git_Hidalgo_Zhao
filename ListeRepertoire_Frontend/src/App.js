@@ -14,6 +14,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
+import { Client_Creer_Liste } from './pages/Client_Creer_Liste.js'
 
 function App () {
   return (
@@ -26,6 +27,7 @@ function App () {
           <Route path="/articles" element={<PageRepertoireClients />} />
           <Route path="/ajouter" element={<Ajouter />} />
           <Route path="/client-repo" element={<Client_Repo />} />
+          <Route path="/client-liste" element={<Client_Creer_Liste />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Container>

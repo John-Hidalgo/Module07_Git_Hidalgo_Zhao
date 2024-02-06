@@ -9,6 +9,7 @@ app.post('/api/pieces/ajouter', GererAjouterUnePiece)
 app.put('/api/pieces/:id/modifier', GererModifierUnePiece)
 app.delete('/api/pieces/:id/supprimer', GererSupprimer)
 app.get('/api/pieces', GererTousPieces)
+app.post('/api/list/ajouter', AjouterUneListeDemande)
 //--------------------------------------------------------------------
 async function GererTousPieces (requete, reponse) {
     UtiliserBD(async (BD) => {
@@ -30,6 +31,20 @@ async function GererSupprimer (requete, reponse) {
     }, reponse).catch(
         () => reponse.status(500).send("Erreur: la piece n'a pas ete supprime")
     )
+}
+//----------------------------Client--------------------------------------
+async function AjouterUneListeDemande (requete, reponse) {
+    const { client, liste_demandes, liste_nom } = requete.body
+    client !== undefined && liste_demandes !== undefined && liste_nom != undefined ?
+        UtiliserBD(async (BD) => {
+            await BD.collection('demandes').insertOne({
+                liste_demandes,
+                client,
+                liste_nom
+            })
+            reponse.status(200).send("Liste ajoutee")
+        }, reponse).catch(() => reponse.status(500).send("Erreur : la liste n'a pas ete ajoutee"))
+        : reponse.status(400).send(`Certains parametres ne sont pas definis: - client: ${client} - liste_demandes: ${liste_demandes} - liste_nom: ${liste_nom}`)
 }
 // -------------------------------------------------------------------
 
