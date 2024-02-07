@@ -25,9 +25,13 @@ const PagePiecesAdmin = () =>
     {
         EffacerPiece(_id,setPieces,ObtiensPieces)
     }
+    const GererAjouterPiece = async () =>
+    {
+        history(`/piecesAjouter`);
+    }
     return (
     <div>
-      <h2>Liste du repertoire</h2>
+            <h2>Liste du repertoire <Button onClick={() => GererAjouterPiece()}> Ajoutez Une Piece </Button></h2>
       <ListGroup>
         {pieces.map((p) => (
           <ListGroup.Item key={p._id}>

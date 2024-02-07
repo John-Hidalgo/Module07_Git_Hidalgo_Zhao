@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import AjouterUnePiece from '../../composants/AjouterUnePiece';
-const PageAjouterPieceAdmin = () => {
+
+const PageAjouterPieceAdmin = () => 
+{
   const [titre, setTitre] = useState('');
   const [artiste, setArtiste] = useState('');
   const [categorie, setCategorie] = useState('');

@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container'
 import { BarreNavigation } from './composants/BarreNavigations.js'
 import { Client_Repo } from './pages/Client_Repo.js'
 import PagePiecesAdmin from './pages/admin/pagePiecesAdmin.js';
+import PageAjouterPieceAdmin from './pages/admin/pageAjouterPiece.js'
 import PageCommandesAdmin from './pages/admin/pageCommandesAdmin.js';
 import TopCinquePiece from './pages/admin/TopCinqePiece.js';
 import PageCommandesActifAdmin from './pages/admin/pageCommandesActifAdmin.js';
@@ -34,6 +35,7 @@ function App () {
           <Route path="/client-repo" element={<Client_Repo />} />
             <Route path="/client-liste" element={<Client_Creer_Liste />} />
             <Route path="/pieces" element={<PagePiecesAdmin />} />
+                  <Route path="/piecesAjouter" element={<PageAjouterPieceAdmin />} />
             <Route path="/commandes" element={<PageCommandesAdmin />} />
             <Route path="/commandesInactif" element={<PageCommandesActifAdmin />} />
             <Route path="/modifier-piece/:id" element={<PageModifierPieceAdmin />} />
