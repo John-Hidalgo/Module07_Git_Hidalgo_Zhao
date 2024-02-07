@@ -7,6 +7,11 @@ import PageRepertoireClients from './pages/pageRepertoireClients.js'
 import Container from 'react-bootstrap/Container'
 import { BarreNavigation } from './composants/BarreNavigations.js'
 import { Client_Repo } from './pages/Client_Repo.js'
+import PagePiecesAdmin from './pages/admin/pagePiecesAdmin.js';
+import PageCommandesAdmin from './pages/admin/pageCommandesAdmin.js';
+import TopCinquePiece from './pages/admin/TopCinqePiece.js';
+import PageCommandesActifAdmin from './pages/admin/pageCommandesActifAdmin.js';
+import PageModifierPieceAdmin from './pages/admin/pageModiferUnePiece.js';
 
 //Router
 import {
