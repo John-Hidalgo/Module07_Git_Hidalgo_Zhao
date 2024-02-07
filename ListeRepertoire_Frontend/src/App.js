@@ -27,7 +27,12 @@ function App () {
           <Route path="/articles" element={<PageRepertoireClients />} />
           <Route path="/ajouter" element={<Ajouter />} />
           <Route path="/client-repo" element={<Client_Repo />} />
-          <Route path="/client-liste" element={<Client_Creer_Liste />} />
+            <Route path="/client-liste" element={<Client_Creer_Liste />} />
+            <Route path="/pieces" element={<PagePiecesAdmin />} />
+            <Route path="/commandes" element={<PageCommandesAdmin />} />
+            <Route path="/commandesInactif" element={<PageCommandesActifAdmin />} />
+            <Route path="/modifier-piece/:id" element={<PageModifierPieceAdmin />} />
+            <Route path="/topCinque" element={<TopCinquePiece />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Container>
