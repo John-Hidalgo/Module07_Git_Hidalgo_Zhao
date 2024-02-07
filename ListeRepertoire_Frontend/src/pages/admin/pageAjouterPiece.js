@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { InputGroup, FormControl, Button, Container } from 'react-bootstrap';
 import AjouterUnePiece from '../../composants/AjouterUnePiece';
 
 const PageAjouterPieceAdmin = () => 
@@ -14,26 +15,29 @@ const PageAjouterPieceAdmin = () =>
         AjouterUnePiece(titre,artiste,categorie);
     };
   return (
-    <div>
-      <label>
-        Titre:
-        <input type="text" value={titre} onChange={(e) => setTitre(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Artiste:
-        <input type="text" value={artiste} onChange={(e) => setArtiste(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Categorie:
-        <input type="text" value={categorie} onChange={(e) => setCategorie(e.target.value)} />
-      </label>
-      <br />
-      <button onClick={gererAjouterUnePiece} disabled={!isButtonActive}>
-        Send
-      </button>
-    </div>
+      <Container>
+          <br />
+          Veuillez entrer le nom de l’artiste titre et la catégorie pour ajouter une nouvelle pièce à votre répertoire.
+          <br /><br />
+          <InputGroup className="mb-3">
+              <InputGroup.Text>Titre:</InputGroup.Text>
+              <FormControl value={titre} onChange={(e) => setTitre(e.target.value)} />
+          </InputGroup>
+
+          <InputGroup className="mb-3">
+              <InputGroup.Text>Artiste:</InputGroup.Text>
+              <FormControl value={artiste} onChange={(e) => setArtiste(e.target.value)} />
+          </InputGroup>
+
+          <InputGroup className="mb-3">
+              <InputGroup.Text>Categorie:</InputGroup.Text>
+              <FormControl value={categorie} onChange={(e) => setCategorie(e.target.value)} />
+          </InputGroup>
+
+          <Button variant="primary" onClick={gererAjouterUnePiece} disabled={!isButtonActive}>
+              Ajoutez
+          </Button>
+      </Container>
   );
 };
 
