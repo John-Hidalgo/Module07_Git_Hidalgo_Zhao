@@ -87,8 +87,12 @@ async function SupprimerClient (requete, reponse) {
     }
 }
 //--------------------------------------------------------------------
-async function GererTousPieces (requete, reponse) {
-    UtiliserBD(async (BD) => {
+async function GererTousPieces(requete, reponse) 
+{
+    console.log("calling handler");
+    UtiliserBD(async (BD) =>
+    {
+        console.log("calling query on db");
         const pieces = await BD.collection('pieces').find().toArray()
         reponse.status(200).json(pieces)
     }, reponse)
@@ -213,20 +217,22 @@ async function GererModifierUnePiece (req, rep) {
 }
 
 
-async function UtiliserBD (operations, reponse) {
-    try {
-        const client = await MongoClient.connect('mongodb://0.0.0.0:27017')
-        //console.log('Connected to MongoDB');
-        // const BD = client.db('repertoire')
-        const BD = client.db('Module07')
-        //console.log('Selected database: repertoire');
-        await operations(BD)
-        client.close()
-        //console.log('Connection closed');
+async function UtiliserBD(operations, reponse)
+{
+    try
+    {
+        const client = await MongoClient.connect('mongodb://0.0.0.0:27017');
+        console.log('Connected to MongoDB');
+        const BD = client.db('repertoire');
+        console.log('Selected database: repertoire');
+        await operations(BD);
+        client.close();
+        console.log('Connection closed');
     }
-    catch (error) {
-        //console.error('Error connecting to the database:', error);
-        reponse.status(500).json({ message: 'Erreur de connexion � la base de donn�e:', error })
+    catch (error)
+    {
+        console.error('Error connecting to the database:', error);
+        reponse.status(500).json({ message: 'Erreur de connexion � la base de donn�e:', error });
     }
 }
 

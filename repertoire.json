@@ -1,93 +1,79 @@
-//[
-//  {
-//    "titre": "My life",
-//    "artiste": "DJ NoName",
-//    "categorie": "�lectronica"
-//  },
-//  {
-//    "titre": "Growing Up",
-//    "artiste": "A.L.E.X",
-//    "categorie": "LoFi"
-//  },
-//  {
-//    "titre": "Cities Of The Future",
-//    "artiste": "Infected Mushroom",
-//    "categorie": "�lectronica"
-//  },
-//  {
-//    "titre": "Gamma Goblins",
-//    "artiste": "Infected Mushroom",
-//    "categorie": "�lectronica"
-//  },
-//  {
-//    "titre": "Hard days",
-//    "artiste": "Loupol",
-//    "categorie": "Rock"
-//  },
-//  {
-//    "titre": "Money",
-//    "artiste": "Pink Floyd",
-//    "categorie": "Rock"
-//  },
-//  {
-//    "titre": "Betrayal",
-//    "artiste": "C�line Dion",
-//    "categorie": "Pop"
-//  },
-//  {
-//    "titre": "Goes On",
-//    "artiste": "C�line Dion",
-//    "categorie": "Soft"
-//  },
-//  {
-//    "titre": "Sad World",
-//    "artiste": "C�line Dion",
-//    "categorie": "Vari�t� fran�aise"
-//  },
-//  {
-//    "titre": "Red flowers",
-//    "artiste": "Hipster2.0",
-//    "categorie": "Emo"
-//  },
-//  {
-//    "titre": "Loser",
-//    "artiste": "Hipster2.0",
-//    "categorie": "Emo"
-//  },
-//  {
-//    "titre": "Sunny",
-//    "artiste": "The Good Band",
-//    "categorie": "Pop"
-//  },
-//  {
-//    "titre": "My Girl",
-//    "artiste": "Motown",
-//    "categorie": "Soul"
-//  },
-//  {
-//    "titre": "Strawberry Letter 23",
-//    "artiste": "The Brothers Johnson",
-//    "categorie": "Soul"
-//  },
-//  {
-//    "titre": "Stomp!",
-//    "artiste": "The Brothers Johnson",
-//    "categorie": "Soul"
-//  }
-//]
-
-
 [
   {
-    "nomClient": "John Doe",
-    "ListeDemande": [
-      {
-        "titre": "Stomp!",
-        "artiste": "The Brothers Johnson",
-        "categorie": "Soul"
-      }
-    ],
-    "etat": 0,
-    "date": "2024-01-11"
+    "titre": "My life",
+    "artiste": "DJ NoName",
+    "categorie": "�lectronica"
+  },
+  {
+    "titre": "Growing Up",
+    "artiste": "A.L.E.X",
+    "categorie": "LoFi"
+  },
+  {
+    "titre": "Cities Of The Future",
+    "artiste": "Infected Mushroom",
+    "categorie": "�lectronica"
+  },
+  {
+    "titre": "Gamma Goblins",
+    "artiste": "Infected Mushroom",
+    "categorie": "�lectronica"
+  },
+  {
+    "titre": "Hard days",
+    "artiste": "Loupol",
+    "categorie": "Rock"
+  },
+  {
+    "titre": "Money",
+    "artiste": "Pink Floyd",
+    "categorie": "Rock"
+  },
+  {
+    "titre": "Betrayal",
+    "artiste": "C�line Dion",
+    "categorie": "Pop"
+  },
+  {
+    "titre": "Goes On",
+    "artiste": "C�line Dion",
+    "categorie": "Soft"
+  },
+  {
+    "titre": "Sad World",
+    "artiste": "C�line Dion",
+    "categorie": "Vari�t� fran�aise"
+  },
+  {
+    "titre": "Red flowers",
+    "artiste": "Hipster2.0",
+    "categorie": "Emo"
+  },
+  {
+    "titre": "Loser",
+    "artiste": "Hipster2.0",
+    "categorie": "Emo"
+  },
+  {
+    "titre": "Sunny",
+    "artiste": "The Good Band",
+    "categorie": "Pop"
+  },
+  {
+    "titre": "My Girl",
+    "artiste": "Motown",
+    "categorie": "Soul"
+  },
+  {
+    "titre": "Strawberry Letter 23",
+    "artiste": "The Brothers Johnson",
+    "categorie": "Soul"
+  },
+  {
+    "titre": "Stomp!",
+    "artiste": "The Brothers Johnson",
+    "categorie": "Soul"
   }
 ]
+
+

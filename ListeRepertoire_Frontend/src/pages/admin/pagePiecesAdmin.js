@@ -25,18 +25,26 @@ const PagePiecesAdmin = () =>
     {
         EffacerPiece(_id,setPieces,ObtiensPieces)
     }
+    const GererAjouterPiece = async () =>
+    {
+        history(`/piecesAjouter`);
+    }
     return (
     <div>
-      <h2>Liste du repertoire</h2>
-      <ListGroup>
-        {pieces.map((p) => (
-          <ListGroup.Item key={p._id}>
-            {p.titre} {p.artiste} {p.categorie}
-            <Button onClick={() => GererModifierPiece(p._id)}> Modifier </Button>
-            <Button onClick={() => GererEffacerPiece(p._id)}> Effacer </Button>
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+        <h2>Liste du repertoire <Button variant="info"  onClick={() => GererAjouterPiece()}> Ajoutez Une Piece </Button></h2>
+        <ListGroup>
+            {pieces.map((p) => (
+                <ListGroup.Item key={p._id}>
+                    <strong>{p.titre}</strong> par <strong>{p.artiste}</strong> dans le genre <strong>{p.categorie}</strong> {' '}
+                    <Button variant="primary" onClick={() => GererModifierPiece(p._id)}>
+                        Modifier
+                    </Button>{' '}
+                    <Button variant="danger" onClick={() => GererEffacerPiece(p._id)}>
+                        Effacer
+                    </Button>
+                </ListGroup.Item>
+            ))}
+        </ListGroup>
     </div>
     )
 }

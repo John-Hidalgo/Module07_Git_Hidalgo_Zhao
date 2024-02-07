@@ -4,7 +4,7 @@ import DesactiverCommande from '../../composants/DesactiverCommande.js';
 import TrierCommandesParDate from '../../composants/TrierParDate.js';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Button, InputGroup, ButtonGroup, FormControl, ListGroup, ListGroupItem, Container } from 'react-bootstrap';
 const PageCommandesAdmin = () => 
 {
     const navigate = useNavigate();
@@ -72,39 +72,53 @@ const PageCommandesAdmin = () =>
         navigate(`/topCinque`);
     }
   return (
-      <div>
-        <button onClick={() => GererVoirCommandesInactif()}> Voir les Commandes inactif</button>
-        <button onClick={() => GererTrierParDate()}> {buttonText}</button>
-        <input type="text" placeholder="filtrer les commandes par nom..."
-            value={nomFiltre} onChange={GererChangementFiltre}
-          />
-        <button onClick={() => GererVoirTopCinque()}> les 5 pièces les plus demandées.</button>
-      {commandes.map((commande, index) => (
-        <div key={index}>
-            <h2>{commande.nomClient}</h2>
-            <p>id: {commande._id}</p>
-            <p>Etat: {commande.etat}</p>
-            {commande.etat === 0 ? (
-            <button onClick={() => GererDesactiverCommande(commande._id)}>
-                Desactiver ce commande!
-            </button>
-            ) : (
-            <div disabled>
-                Commande est livrée
-            </div>
-            )}
-            <p>Date: {commande.date}</p>
-            <ListGroup>
-            {commande.ListeDemande.map((demande, i) => (
-                <ListGroupItem key={i}>
-                <strong>{demande.titre}</strong> par {demande.artiste} genre: {demande.categorie}
-                </ListGroupItem>
-            ))}
-            </ListGroup>
-          
-        </div>
-      ))}
-    </div>
+      <Container>
+            <br/>
+          <Button variant="primary" onClick={() => GererVoirCommandesInactif()}>Voir les Commandes inactif</Button>{' '}
+          <Button variant="info" onClick={() => GererTrierParDate()}>{buttonText}</Button>{' '}
+          <Button variant="success" onClick={() => GererVoirTopCinque()}>Les 5 pièces les plus demandées</Button>{' '}
+          <br /><br />
+          <InputGroup className="mb-3">
+              <FormControl
+                  type="text"
+                  placeholder="filtrer les commandes par nom..."
+                  value={nomFiltre}
+                  onChange={GererChangementFiltre}
+              />
+          </InputGroup>
+          <Container>
+          {commandes.map((commande, index) => (
+              
+              <div key={index}>
+                  <h2>{commande.nomClient}</h2>
+                  <p>id : {commande._id}</p>
+{/*                  <p>Etat: {commande.etat}</p>*/}
+                  {commande.etat === 0 ? (
+                      <Button variant="danger" onClick={() => GererDesactiverCommande(commande._id)}>
+                          Desactiver ce commande!
+                      </Button>
+                  ) : (
+                      <div disabled>
+                          Commande est livrée
+                      </div>
+                  )}
+                  <p>Date de livraison: {commande.date}</p>
+                  <ListGroup>
+                      
+                      Pièces commandées :
+                      {commande.ListeDemande.map((demande, i) => (
+                         
+                          <ListGroupItem key={i}>
+                              <strong>{demande.titre}</strong> par {demande.artiste} genre: {demande.categorie}
+                          </ListGroupItem>
+                      ))}
+                      
+                  </ListGroup>
+                  </div>
+              
+          ))}
+          </Container>
+      </Container>
   );
 };
 
