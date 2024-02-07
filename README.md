@@ -61,7 +61,7 @@ TP
 
 - pieces
 - demandes
-
+- clients
 ## Liste du taches
 
 | db       | method | api                         | fonction |
@@ -76,6 +76,11 @@ TP
 | demandes | POST   | /api/demandes/ajouter       |          |
 | demandes | PUT    | /api/demandes/:id/modifier  |          |
 | demandes | DELETE | /api/demandes:/id/supprimer |          |
+| clients  | Get    | /api/clients                |          |
+| clients  | GET    | /api/clients/:id            |          |
+| clients  | POST   | /api/clients/ajouter        |          |
+| clients  | PUT    | /api/clients:/id/modifer    |          |
+| clients  | DELETE | /api/clients:/id/supprimer  |          |
 
 ## Pages
 
