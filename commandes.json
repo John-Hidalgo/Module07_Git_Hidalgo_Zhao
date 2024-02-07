@@ -1,67 +1,155 @@
-﻿[
+﻿
+[
   {
-    "nomClient": "John Doe",
+    "nomClient": "Alice Johnson",
     "ListeDemande": [
       {
-        "titre": "Stomp!",
+        "titre": "Strawberry Letter 23",
+        "artiste": "The Brothers Johnson",
+        "categorie": "Soul"
+      },
+      {
+        "titre": "Goes On",
+        "artiste": "Céline Dion",
+        "categorie": "Soft"
+      }
+    ],
+    "etat": 0,
+    "date": "2024-02-01"
+  },
+  {
+    "nomClient": "Bob Williams",
+    "ListeDemande": [
+      {
+        "titre": "Loser",
+        "artiste": "Hipster2.0",
+        "categorie": "Emo"
+      },
+      {
+        "titre": "Money",
+        "artiste": "Pink Floyd",
+        "categorie": "Rock"
+      }
+    ],
+    "etat": 0,
+    "date": "2024-02-03"
+  },
+  {
+    "nomClient": "Charlie Davis",
+    "ListeDemande": [
+      {
+        "titre": "Sunny",
+        "artiste": "The Good Band",
+        "categorie": "Pop"
+      },
+      {
+        "titre": "Sad World",
+        "artiste": "Céline Dion",
+        "categorie": "Variété française"
+      }
+    ],
+    "etat": 1,
+    "date": "2024-02-05"
+  },
+  {
+    "nomClient": "Diana Miller",
+    "ListeDemande": [
+      {
+        "titre": "My Girl",
+        "artiste": "Motown",
+        "categorie": "Soul"
+      },
+      {
+        "titre": "Cities Of The Future",
+        "artiste": "Infected Mushroom",
+        "categorie": "Électronica"
+      }
+    ],
+    "etat": 1,
+    "date": "2024-02-07"
+  },
+  
+  {
+    "nomClient": "Eva White",
+    "ListeDemande": [
+      {
+        "titre": "Betrayal",
+        "artiste": "Céline Dion",
+        "categorie": "Pop"
+      },
+      {
+        "titre": "Red flowers",
+        "artiste": "Hipster2.0",
+        "categorie": "Emo"
+      },
+      {
+        "titre": "Gamma Goblins",
+        "artiste": "Infected Mushroom",
+        "categorie": "Électronica"
+      }
+    ],
+    "etat": 0,
+    "date": "2024-02-10"
+  },
+  {
+    "nomClient": "Frank Turner",
+    "ListeDemande": [
+      {
+        "titre": "My life",
+        "artiste": "DJ NoName",
+        "categorie": "Électronica"
+      },
+      {
+        "titre": "Strawberry Letter 23",
         "artiste": "The Brothers Johnson",
         "categorie": "Soul"
       }
     ],
     "etat": 0,
-    "date": "2024-01-11"
+    "date": "2024-02-15"
   },
   {
-    "nomClient": "Jane Doe",
+    "nomClient": "Grace Smith",
     "ListeDemande": [
       {
-        "titre": "Growing Up",
-        "artiste": "A.L.E.X",
-        "categorie": "LoFi"
+        "titre": "Hard days",
+        "artiste": "Loupol",
+        "categorie": "Rock"
       },
       {
         "titre": "Cities Of The Future",
         "artiste": "Infected Mushroom",
-        "categorie": "�lectronica"
-      }
-    ],
-    "etat": 0,
-    "date": "2024-01-11"
-  },
-  {
-    "nomClient": "Jim Smith",
-    "ListeDemande": [
+        "categorie": "Électronica"
+      },
       {
         "titre": "Growing Up",
         "artiste": "A.L.E.X",
         "categorie": "LoFi"
-      },
-
-      {
-        "titre": "Money",
-        "artiste": "Pink Floyd",
-        "categorie": "Rock"
       }
     ],
     "etat": 1,
-    "date": "2024-01-11"
+    "date": "2024-02-20"
   },
   {
-    "nomClient": "Billy Conway",
+    "nomClient": "Henry Turner",
     "ListeDemande": [
       {
-        "titre": "Growing Up",
-        "artiste": "A.L.E.X",
-        "categorie": "LoFi"
+        "titre": "Sad World",
+        "artiste": "Céline Dion",
+        "categorie": "Variété française"
       },
-
       {
         "titre": "Money",
         "artiste": "Pink Floyd",
         "categorie": "Rock"
+      },
+      {
+        "titre": "My Girl",
+        "artiste": "Motown",
+        "categorie": "Soul"
       }
     ],
     "etat": 1,
-    "date": "2024-01-11"
+    "date": "2024-02-25"
   }
 ]
