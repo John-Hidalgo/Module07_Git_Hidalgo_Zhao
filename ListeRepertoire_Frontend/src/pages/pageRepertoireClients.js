@@ -20,7 +20,6 @@ const PageRepertoireClients = () => {
             .catch(console.error)
     }
 
-
     const repertoire = Repertoire()
     return (
         <div>
@@ -30,10 +29,6 @@ const PageRepertoireClients = () => {
                     <li key={p._id}> {p.titre} {p.artiste} {p.categorie}
                         <Button alt={index} variant="warning"
                             onClick={() => {
-                                // const piece = { p.titre, p.artiste, p.categorie }
-                                // alert(p.titre)
-                                // alert(p.artiste)
-                                // alert(p.categorie)
                                 ajouter(p.titre, p.artiste, p.categorie)
                             }} size="sm" className="m-1">
                             Ajouter
