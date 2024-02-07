@@ -7,11 +7,14 @@ app.use(express.json())
 app.get('/api/pieces/:id', GererObtiensUnePiece)
 app.post('/api/pieces/ajouter', GererAjouterUnePiece)
 app.put('/api/pieces/:id/modifier', GererModifierUnePiece)
-app.delete('/api/pieces/:id/supprimer', GererSupprimer)
+app.delete('/api/pieces/:id/supprimer', GererSupprimerUnePiece)
 app.get('/api/pieces', GererTousPieces)
 app.post('/api/list/ajouter', AjouterUneListeDemande)
 app.get('/api/list/:id', TrouverUneListe)
 app.put('/api/list/:id/modifier', ModifierAjouterUnePieceDansListeDemande)
+app.get('/api/commandes', GererObtiensCommandes);
+app.get('/api/commandes/actif', GererObtiensCommandesActif);
+app.put('/api/commandes/:id/inactif', GererMetsCommandesInactif);
 //--------------------------------------------------------------------
 async function GererTousPieces (requete, reponse) {
     UtiliserBD(async (BD) => {
@@ -20,19 +23,29 @@ async function GererTousPieces (requete, reponse) {
     }, reponse)
 }
 
-async function GererSupprimer (requete, reponse) {
-    const pieceId = requete.params.id
-    UtiliserBD(async (BD) => {
-        const resultat = await BD.collection('pieces').deleteOne({ _id: new ObjectId(pieceId) })
-        console.log(resultat)
-        if (resultat.deletedCount === 1) {
-            reponse.status(200).send(`${resultat.deletedCount} piece supprime`)
-        } else {
-            reponse.status(404).send("La piece n'a pas trouve")
-        }
-    }, reponse).catch(
-        () => reponse.status(500).send("Erreur: la piece n'a pas ete supprime")
-    )
+async function GererSupprimerUnePiece(requete, reponse) 
+{
+    const { id: pieceId } = requete.params;
+    if (pieceId !== undefined && pieceId !== "") 
+    {
+        UtiliserBD(async (db) =>
+        {
+            const resultat = await db.collection('pieces').deleteOne({ _id: new ObjectId(pieceId) });
+
+            if (resultat.deletedCount === 1) 
+            {
+                reponse.status(200).send(`${resultat.deletedCount} piece supprime`);
+            }
+            else
+            {
+                reponse.status(500).send("La piece n'a pas ete supprime");
+            }
+        }, reponse).catch(() => reponse.status(500).send("Erreur: la piece n'a pas ete supprime"));
+    }
+    else
+    {
+        reponse.status(400).send("Paramètre 'id' manquant ou invalide");
+    }
 }
 //----------------------------Client--------------------------------------
 async function AjouterUneListeDemande (requete, reponse) {
@@ -109,28 +122,35 @@ async function GererAjouterUnePiece (req, rep) {
         : rep.status(400).send(`Certains parametres ne sont pas definis: - titre: ${titre} - artiste: ${artiste} - categorie: ${categorie}`)
 }
 
-async function GererModifierUnePiece (req, rep) {
-    const idPiece = req.params.id
-    const { titre, artiste, categorie } = req.body
-    if (titre !== undefined || artiste !== undefined || categorie !== undefined) {
-        UtiliserBD(async (BD) => {
-            const updateObject = {}
-            if (titre !== undefined) updateObject.titre = titre
-            if (artiste !== undefined) updateObject.artiste = artiste
-            if (categorie !== undefined) updateObject.categorie = categorie
-            const result = await BD.collection('pieces').updateOne({ _id: new ObjectId(idPiece) }, { $set: updateObject })
-            if (result.modifiedCount > 0) {
-                rep.status(200).send("Piece modifiee avec succes")
+async function GererModifierUnePiece(req, rep) 
+{
+    const idPiece = req.params.id;
+    const { titre, artiste, categorie } = req.body;
+    console.log(idPiece);
+    if (ObjectId.isValid(idPiece) && (titre !== undefined || artiste !== undefined || categorie !== undefined))
+    {
+        UtiliserBD(async (BD) =>
+        {
+            const nouvelleObjet = {};
+            if (titre !== undefined) nouvelleObjet.titre = titre;
+            if (artiste !== undefined) nouvelleObjet.artiste = artiste;
+            if (categorie !== undefined) nouvelleObjet.categorie = categorie;
+            const result = await BD.collection('pieces').updateOne(
+                { _id: new ObjectId(idPiece) },
+                { $set: nouvelleObjet }
+            );
+            if (result.modifiedCount > 0)
+            {
+                rep.status(200).send("Pièce modifiée avec succès");
+            } else
+            {
+                rep.status(404).send("Aucune pièce trouvée avec l'ID fourni");
             }
-            else {
-                rep.status(404).send("Aucune piece trouvee avec l'ID fourni")
-            }
-        }, rep).catch(() => rep.status(500).send("Erreur : la piece n'a pas ete modifiee"))
+        }, rep).catch(() => rep.status(500).send("Erreur : la pièce n'a pas été modifiée"));
+    } else
+    {
+        rep.status(400).send("Invalid ObjectId or no modification parameters provided");
     }
-    else {
-        rep.status(400).send("Aucun parametre de modification fourni")
-    }
-
 }
 
 
@@ -157,3 +177,41 @@ app.get('/api/hello', (requete, reponse) => { reponse.send("Hello World!") })
 
 app.listen(8000, () => console.log('Ecoute le port 8000'));
 
+async function GererObtiensCommandes(req, rep)
+{
+    UtiliserBD(async (db) =>
+    {
+        const commandes = await db.collection('commandes').find().toArray()
+        rep.status(200).json(commandes)
+    }, rep)
+}
+
+async function GererObtiensCommandesActif(req, rep)
+{
+    UtiliserBD(async (db) =>
+    {
+        const commandes = await db.collection('commandes').find({ 'etat': 0 }).toArray()
+        rep.status(200).json(commandes)
+    }, rep)
+}
+
+async function GererMetsCommandesInactif(req, rep)
+{
+    const commandeId = req.params.id;
+    UtiliserBD(async (db) =>
+    {
+        const result = await db.collection('commandes').updateOne(
+            { "_id": new ObjectId(commandeId) },
+            { $set: { "etat": 1 } }
+        );
+
+        if (result.modifiedCount === 1)
+        {
+            rep.status(200).json({ message: 'Mise à jour réussie' });
+        }
+        else
+        {
+            rep.status(404).json({ message: 'Aucune commande trouvée avec cet ID' });
+        }
+    }, rep);
+}

@@ -7,6 +7,11 @@ import PageRepertoireClients from './pages/pageRepertoireClients.js'
 import Container from 'react-bootstrap/Container'
 import { BarreNavigation } from './composants/BarreNavigations.js'
 import { Client_Repo } from './pages/Client_Repo.js'
+import PagePiecesAdmin from './pages/admin/pagePiecesAdmin.js';
+import PageCommandesAdmin from './pages/admin/pageCommandesAdmin.js';
+import TopCinquePiece from './pages/admin/TopCinqePiece.js';
+import PageCommandesActifAdmin from './pages/admin/pageCommandesActifAdmin.js';
+import PageModifierPieceAdmin from './pages/admin/pageModiferUnePiece.js';
 
 //Router
 import {
@@ -27,7 +32,12 @@ function App () {
           <Route path="/articles" element={<PageRepertoireClients />} />
           <Route path="/ajouter" element={<Ajouter />} />
           <Route path="/client-repo" element={<Client_Repo />} />
-          <Route path="/client-liste" element={<Client_Creer_Liste />} />
+            <Route path="/client-liste" element={<Client_Creer_Liste />} />
+            <Route path="/pieces" element={<PagePiecesAdmin />} />
+            <Route path="/commandes" element={<PageCommandesAdmin />} />
+            <Route path="/commandesInactif" element={<PageCommandesActifAdmin />} />
+            <Route path="/modifier-piece/:id" element={<PageModifierPieceAdmin />} />
+            <Route path="/topCinque" element={<TopCinquePiece />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Container>

@@ -1,0 +1,67 @@
+﻿[
+  {
+    "nomClient": "John Doe",
+    "ListeDemande": [
+      {
+        "titre": "Stomp!",
+        "artiste": "The Brothers Johnson",
+        "categorie": "Soul"
+      }
+    ],
+    "etat": 0,
+    "date": "2024-01-11"
+  },
+  {
+    "nomClient": "Jane Doe",
+    "ListeDemande": [
+      {
+        "titre": "Growing Up",
+        "artiste": "A.L.E.X",
+        "categorie": "LoFi"
+      },
+      {
+        "titre": "Cities Of The Future",
+        "artiste": "Infected Mushroom",
+        "categorie": "�lectronica"
+      }
+    ],
+    "etat": 0,
+    "date": "2024-01-11"
+  },
+  {
+    "nomClient": "Jim Smith",
+    "ListeDemande": [
+      {
+        "titre": "Growing Up",
+        "artiste": "A.L.E.X",
+        "categorie": "LoFi"
+      },
+
+      {
+        "titre": "Money",
+        "artiste": "Pink Floyd",
+        "categorie": "Rock"
+      }
+    ],
+    "etat": 1,
+    "date": "2024-01-11"
+  },
+  {
+    "nomClient": "Billy Conway",
+    "ListeDemande": [
+      {
+        "titre": "Growing Up",
+        "artiste": "A.L.E.X",
+        "categorie": "LoFi"
+      },
+
+      {
+        "titre": "Money",
+        "artiste": "Pink Floyd",
+        "categorie": "Rock"
+      }
+    ],
+    "etat": 1,
+    "date": "2024-01-11"
+  }
+]
