@@ -58,8 +58,9 @@ Sur Git, organisez vos travaux de manière à éviter de faire des commits en pa
 ## Structure du DB
 
 TP
-|---pieces
-|---demandes
+
+- pieces
+- demandes
 
 ## Liste du taches
 
@@ -78,10 +79,10 @@ TP
 
 ## Pages
 
-    Accueil
-    Admin
-    Repo
-    Client-Compte
+- Accueil
+- Admin
+- Repo
+- Client-Compte
 
 ### John
 
