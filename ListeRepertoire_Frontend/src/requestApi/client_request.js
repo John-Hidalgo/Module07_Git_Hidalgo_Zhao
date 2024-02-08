@@ -62,7 +62,17 @@ async function deleteTheClient (_id) {
         console.log(err.message)
     }
 }
-export { getAllClient, getTheClient, addTheClient, updateClient, deleteTheClient }
+export { getAllClient, getTheClient, addTheClient, updateClient, deleteTheClient, formatDate }
 
+function formatDate () {
+    const date = new Date(Date.now())
 
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+
+    const formattedDate = `${year}-${month}-${day}`
+
+    return formattedDate
+}
 

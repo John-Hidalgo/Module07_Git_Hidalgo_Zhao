@@ -13,6 +13,7 @@ export const BarreNavigation = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/admin">Admin</Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link>
                         <Nav.Link href="/articles">Pieces</Nav.Link>
                         <Nav.Link href="/ajouter">Ajouter</Nav.Link>
                         <Nav.Link href="/client-repo">Repo</Nav.Link>
