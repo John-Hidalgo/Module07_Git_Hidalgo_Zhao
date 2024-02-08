@@ -4,24 +4,28 @@ import { MongoClient, ObjectId } from 'mongodb'
 
 const app = express()
 app.use(express.json())
+//--------------------------------------------------------------------
+app.get('/api/pieces', GererTousPieces)
 app.get('/api/pieces/:id', GererObtiensUnePiece)
 app.post('/api/pieces/ajouter', GererAjouterUnePiece)
 app.put('/api/pieces/:id/modifier', GererModifierUnePiece)
 app.delete('/api/pieces/:id/supprimer', GererSupprimerUnePiece)
-app.get('/api/pieces', GererTousPieces)
-app.post('/api/list/ajouter', AjouterUneListeDemande)
-app.get('/api/list/:id', TrouverUneListe)
-app.put('/api/list/:id/modifier', ModifierAjouterUnePieceDansListeDemande)
+//--------------------------------------------------------------------
 app.get('/api/commandes', GererObtiensCommandes)
 app.get('/api/commandes/actif', GererObtiensCommandesActif)
+app.get('/api/commandes/:id', TrouverUneCommande)
+app.post('/api/commandes/ajouter', AjouterUneCommande)
 app.put('/api/commandes/:id/inactif', GererMetsCommandesInactif)
+app.put('/api/commandes/:id/ajouter', ModifierAjouterUnePieceDansCommande)
+app.put('/api/commandes/:id/modifier', ModifierCommande)
+app.delete('/api/commandes/:id/supprimer', DeleteUneCommande)
 //--------------------------------------------------------------------
 app.get('/api/clients', ObtiensClients)
 app.get('/api/clients/:id', ObtiensClient)
 app.post('/api/clients/ajouter', AjouterClient)
 app.put('/api/clients/:id/modifier', ModifierClient)
 app.delete('/api/clients/:id/supprimer', SupprimerClient)
-//--------------------------------------------------------------------
+//--------------------------client------------------------------------------
 async function ObtiensClients (requete, reponse) {
     UtiliserBD(async (BD) => {
         const clients = await BD.collection('clients').find().toArray()
@@ -87,7 +91,7 @@ async function SupprimerClient (requete, reponse) {
         reponse.status(400).send("Paramètre 'id' manquant ou invalide")
     }
 }
-//--------------------------------------------------------------------
+//------------------------------piece--------------------------------------
 async function GererTousPieces (requete, reponse) {
     console.log("calling handler")
     UtiliserBD(async (BD) => {
@@ -96,79 +100,6 @@ async function GererTousPieces (requete, reponse) {
         reponse.status(200).json(pieces)
     }, reponse)
 }
-
-async function GererSupprimerUnePiece (requete, reponse) {
-    const { id: pieceId } = requete.params
-    if (pieceId !== undefined && pieceId !== "") {
-        UtiliserBD(async (db) => {
-            const resultat = await db.collection('pieces').deleteOne({ _id: new ObjectId(pieceId) })
-
-            if (resultat.deletedCount === 1) {
-                reponse.status(200).send(`${resultat.deletedCount} piece supprime`)
-            }
-            else {
-                reponse.status(500).send("La piece n'a pas ete supprime")
-            }
-        }, reponse).catch(() => reponse.status(500).send("Erreur: la piece n'a pas ete supprime"))
-    }
-    else {
-        reponse.status(400).send("Paramètre 'id' manquant ou invalide")
-    }
-}
-//----------------------------demandes--------------------------------------
-async function AjouterUneListeDemande (requete, reponse) {
-    const { client, liste_demandes, liste_nom } = requete.body
-    client !== undefined && liste_demandes !== undefined && liste_nom != undefined ?
-        UtiliserBD(async (BD) => {
-            await BD.collection('demandes').insertOne({
-                liste_demandes,
-                client,
-                liste_nom
-            })
-            reponse.status(200).send("Liste ajoutee")
-        }, reponse).catch(() => reponse.status(500).send("Erreur : la liste n'a pas ete ajoutee"))
-        : reponse.status(400).send(`Certains parametres ne sont pas definis: - client: ${client} - liste_demandes: ${liste_demandes} - liste_nom: ${liste_nom}`)
-}
-async function TrouverUneListe (requete, reponse) {
-    UtiliserBD(async (BD) => {
-        const idListe = requete.params.id
-        const liste = await BD.collection('demandes').findOne({ _id: new ObjectId(idListe) })
-        reponse.status(200).json(liste)
-    }, reponse)
-}
-async function ModifierAjouterUnePieceDansListeDemande (requete, reponse) {
-    const idListe = requete.params.id
-    const { titre, artiste, categorie } = requete.body
-    if (titre !== undefined || artiste !== undefined || categorie !== undefined) {
-        UtiliserBD(async (BD) => {
-            const updateObject = {}
-            updateObject.titre = titre
-            updateObject.artiste = artiste
-            updateObject.categorie = categorie
-            //根据id找到源liste
-            const ele = await BD.collection('demandes').findOne({ _id: new ObjectId(idListe) })
-            const oldList = ele['liste_demandes']
-            //update en Rajoutant
-            oldList.push(updateObject)
-            console.log(oldList)
-            const result = await BD.collection('demandes').updateOne({ _id: new ObjectId(idListe) }, { $set: { "liste_demandes": oldList } })
-            if (result.modifiedCount > 0) {
-                reponse.status(200).send("Liste modifiee avec succes")
-            }
-            else {
-                reponse.status(404).send("Aucune liste trouvee avec l'ID fourni")
-            }
-        }, reponse).catch(() => reponse.status(500).send("Erreur : la liste n'a pas ete modifiee"))
-    }
-    else {
-        reponse.status(400).send("Aucun parametre de modification fourni")
-    }
-}
-
-
-
-// -------------------------------------------------------------------
-
 async function GererObtiensUnePiece (req, rep) {
     UtiliserBD(async (BD) => {
         const idPiece = req.params.id
@@ -189,7 +120,6 @@ async function GererAjouterUnePiece (req, rep) {
         }, rep).catch(() => rep.status(500).send("Erreur : la piece n'a pas ete ajoutee"))
         : rep.status(400).send(`Certains parametres ne sont pas definis: - titre: ${titre} - artiste: ${artiste} - categorie: ${categorie}`)
 }
-
 async function GererModifierUnePiece (req, rep) {
     const idPiece = req.params.id
     const { titre, artiste, categorie } = req.body
@@ -214,7 +144,145 @@ async function GererModifierUnePiece (req, rep) {
         rep.status(400).send("Invalid ObjectId or no modification parameters provided")
     }
 }
+async function GererSupprimerUnePiece (requete, reponse) {
+    const { id: pieceId } = requete.params
+    if (pieceId !== undefined && pieceId !== "") {
+        UtiliserBD(async (db) => {
+            const resultat = await db.collection('pieces').deleteOne({ _id: new ObjectId(pieceId) })
 
+            if (resultat.deletedCount === 1) {
+                reponse.status(200).send(`${resultat.deletedCount} piece supprime`)
+            }
+            else {
+                reponse.status(500).send("La piece n'a pas ete supprime")
+            }
+        }, reponse).catch(() => reponse.status(500).send("Erreur: la piece n'a pas ete supprime"))
+    }
+    else {
+        reponse.status(400).send("Paramètre 'id' manquant ou invalide")
+    }
+}
+//----------------------------commande--------------------------------------
+async function AjouterUneCommande (requete, reponse) {
+    const { nomClient, ListeDemande, etat, date } = requete.body
+    nomClient !== undefined && ListeDemande !== undefined && etat != undefined && date != undefined ?
+        UtiliserBD(async (BD) => {
+            await BD.collection('demandes').insertOne({
+                nomClient,
+                ListeDemande,
+                etat,
+                date
+            })
+            reponse.status(200).send("Commande ajoutee")
+        }, reponse).catch(() => reponse.status(500).send("Erreur : la Commande n'a pas ete ajoutee"))
+        : reponse.status(400).send(`Certains parametres ne sont pas definis: - client: ${nomClient} - liste_demandes: ${ListeDemande} - liste_nom: ${liste_nom}- etat: ${etat} -date : ${date}`)
+}
+async function TrouverUneCommande (requete, reponse) {
+    UtiliserBD(async (BD) => {
+        const idListe = requete.params.id
+        const liste = await BD.collection('demandes').findOne({ _id: new ObjectId(idListe) })
+        reponse.status(200).json(liste)
+    }, reponse)
+}
+async function ModifierAjouterUnePieceDansCommande (requete, reponse) {
+    const idListe = requete.params.id
+    const { titre, artiste, categorie } = requete.body
+    if (titre !== undefined || artiste !== undefined || categorie !== undefined) {
+        UtiliserBD(async (BD) => {
+            const updateObject = {}
+            updateObject.titre = titre
+            updateObject.artiste = artiste
+            updateObject.categorie = categorie
+            //根据id找到源liste
+            const ele = await BD.collection('demandes').findOne({ _id: new ObjectId(idListe) })
+            const oldList = ele['ListeDemande']
+            //update en Rajoutant
+            oldList.push(updateObject)
+            console.log(oldList)
+            const result = await BD.collection('demandes').updateOne({ _id: new ObjectId(idListe) }, { $set: { "ListeDemande": oldList } })
+            if (result.modifiedCount > 0) {
+                reponse.status(200).send("Liste modifiee avec succes")
+            }
+            else {
+                reponse.status(404).send("Aucune liste trouvee avec l'ID fourni")
+            }
+        }, reponse).catch(() => reponse.status(500).send("Erreur : la liste n'a pas ete modifiee"))
+    }
+    else {
+        reponse.status(400).send("Aucun parametre de modification fourni")
+    }
+}
+async function ModifierCommande (requete, reponse) {
+    const idCommande = requete.params.id
+    const { nomClient, ListeDemande, etat, date } = requete.body
+    if (nomClient !== undefined && ListeDemande !== undefined && etat !== undefined && date !== undefined) {
+        {
+            UtiliserBD(async (BD) => {
+                const updateObject = {}
+                updateObject.nomClient = nomClient
+                updateObject.ListeDemande = ListeDemande
+                updateObject.etat = etat
+                updateObject.date = date
+                const result = await BD.collection('demandes').updateOne({ _id: new ObjectId(idCommande) }, { $set: updateObject })
+                if (result.modifiedCount > 0) {
+                    reponse.status(200).send("Commande modifiee avec succes")
+                }
+                else {
+                    reponse.status(404).send("Aucune Commande trouvee avec l'ID fourni")
+                }
+            }, reponse).catch(() => reponse.status(500).send("Erreur : la Commande n'a pas ete modifiee"))
+        }
+    } else {
+        reponse.status(400).send("Aucun parametre de modification fourni")
+    }
+}
+async function GererObtiensCommandes (req, rep) {
+    UtiliserBD(async (db) => {
+        const commandes = await db.collection('demandes').find().toArray()
+        rep.status(200).json(commandes)
+    }, rep)
+}
+async function GererObtiensCommandesActif (req, rep) {
+    UtiliserBD(async (db) => {
+        const commandes = await db.collection('demandes').find({ 'etat': '0' }).toArray()
+        rep.status(200).json(commandes)
+    }, rep)
+}
+async function GererMetsCommandesInactif (req, rep) {
+    const commandeId = req.params.id
+    UtiliserBD(async (db) => {
+        const result = await db.collection('demandes').updateOne(
+            { "_id": new ObjectId(commandeId) },
+            { $set: { "etat": '1' } }
+        )
+
+        if (result.modifiedCount === 1) {
+            rep.status(200).json({ message: 'Mise à jour réussie' })
+        }
+        else {
+            rep.status(404).json({ message: 'Aucune commande trouvée avec cet ID' })
+        }
+    }, rep)
+}
+async function DeleteUneCommande (requete, reponse) {
+    const { id: commandeID } = requete.params
+    if (commandeID !== undefined && commandeID !== "") {
+        UtiliserBD(async (db) => {
+            const resultat = await db.collection('demandes').deleteOne({ _id: new ObjectId(commandeID) })
+
+            if (resultat.deletedCount === 1) {
+                reponse.status(200).send(`${resultat.deletedCount} commande supprime`)
+            }
+            else {
+                reponse.status(500).send("La commande n'a pas ete supprime")
+            }
+        }, reponse).catch(() => reponse.status(500).send("Erreur: la commande n'a pas ete supprime"))
+    }
+    else {
+        reponse.status(400).send("Paramètre 'id' manquant ou invalide")
+    }
+}
+// -------------------------------------------------------------------
 
 async function UtiliserBD (operations, reponse) {
     try {
@@ -236,36 +304,9 @@ async function UtiliserBD (operations, reponse) {
 //REST_API
 app.get('/api/hello', (requete, reponse) => { reponse.send("Hello World!") })
 
-
 app.listen(8000, () => console.log('Ecoute le port 8000'))
 
-async function GererObtiensCommandes (req, rep) {
-    UtiliserBD(async (db) => {
-        const commandes = await db.collection('commandes').find().toArray()
-        rep.status(200).json(commandes)
-    }, rep)
-}
 
-async function GererObtiensCommandesActif (req, rep) {
-    UtiliserBD(async (db) => {
-        const commandes = await db.collection('commandes').find({ 'etat': 0 }).toArray()
-        rep.status(200).json(commandes)
-    }, rep)
-}
 
-async function GererMetsCommandesInactif (req, rep) {
-    const commandeId = req.params.id
-    UtiliserBD(async (db) => {
-        const result = await db.collection('commandes').updateOne(
-            { "_id": new ObjectId(commandeId) },
-            { $set: { "etat": 1 } }
-        )
 
-        if (result.modifiedCount === 1) {
-            rep.status(200).json({ message: 'Mise à jour réussie' })
-        }
-        else {
-            rep.status(404).json({ message: 'Aucune commande trouvée avec cet ID' })
-        }
-    }, rep)
-}
+
