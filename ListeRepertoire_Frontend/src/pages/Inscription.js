@@ -7,9 +7,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { BsCheck, BsX } from "react-icons/bs"
 import { addTheClient, formatDate } from '../requestApi/client_request.js'
-import { response } from 'express'
 
-export function Login () {
+export function Inscription () {
     //etat
     const [nom, setnom] = useState('')
     const [motDePasse, setMotDePasse] = useState('')
@@ -20,7 +19,6 @@ export function Login () {
                 console.log('User registered successfully.')
             })
             .catch(error => {
-                // 处理注册失败的逻辑
                 console.error('Registration failed:', error)
             })
     }
@@ -112,7 +110,7 @@ export function Login () {
                             }
                             disabled={!(aMajuscule() && aChiffre() && sontIdentique())}
                         >
-                            Envoyer
+                            Inscrire
                         </Button>
                     </Form>
                 </Col>
