@@ -1,4 +1,4 @@
-//Api Request pour la collection Client
+//Api Request pour la collection Commandes
 
 async function getAllCommandes () {
     try {

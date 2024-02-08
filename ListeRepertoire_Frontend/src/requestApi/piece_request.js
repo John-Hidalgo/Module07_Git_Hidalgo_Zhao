@@ -1,4 +1,4 @@
-//Api Request pour la collection Client
+//Api Request pour la collection Pieces
 async function getAllPieces () {
     try {
         const response = await fetch(`/api/pieces`)
