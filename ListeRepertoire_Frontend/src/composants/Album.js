@@ -29,7 +29,7 @@ export function Album () {
                                     <div className='text-center'>
                                         <h5 id='titre' fontSize="16px" className='fw-bolder'>{p.titre}</h5>
                                         <p id='artiste' fontSize="14px" className=''>{p.artiste}</p>
-                                        <p id='categorie' fontSize="14px" className=''>{p.url}</p>
+                                        <i id='categorie' fontSize="14px" className=''>{p.categorie}</i>
                                     </div>
                                 </div>
                             </div>
