@@ -109,12 +109,14 @@ async function GererObtiensUnePiece (req, rep) {
 }
 async function GererAjouterUnePiece (req, rep) {
     const { titre, artiste, categorie } = req.body
+    const url = getUrlRandom()
     titre !== undefined && artiste !== undefined && categorie !== undefined ?
         UtiliserBD(async (BD) => {
             await BD.collection('pieces').insertOne({
                 titre,
                 artiste,
-                categorie
+                categorie,
+                url
             })
             rep.status(200).send("Piece ajoutee")
         }, rep).catch(() => rep.status(500).send("Erreur : la piece n'a pas ete ajoutee"))
@@ -306,7 +308,29 @@ app.get('/api/hello', (requete, reponse) => { reponse.send("Hello World!") })
 
 app.listen(8000, () => console.log('Ecoute le port 8000'))
 
+const nomsDePhotos = [
+    "batt1.jpeg",
+    "Berlin_Love_Life.png",
+    "fallingintoyou.jpg",
+    "believe.jpg",
+    "enr122.png",
+    "onew.jpg",
+    "believe.jpg",
+    "colors.jpg",
+    "others.jpg",
+    "colors2.jpg",
+    "nancy1.jpg",
+    "fairuz3.jpg",
+    "wala2.jpg",
+    "femmes2.jpg",
+    "france1.png",
+    "Plusbleu.jpeg",
+    "fairuz3.jpg"
+]
+function getUrlRandom () {
+    return nomsDePhotos[getRandomNumber(0, nomsDePhotos.length - 1)]
+}
 
-
-
-
+function getRandomNumber (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}

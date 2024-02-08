@@ -17,10 +17,17 @@ export const BarreNavigation = () => {
                         <Nav.Link href="/ajouter">Ajouter</Nav.Link>
                         <Nav.Link href="/client-repo">Repo</Nav.Link>
                         <Nav.Link href="/client-liste">CreerListe</Nav.Link>
-                        <Nav.Link href="/pieces">Répertoire Admin</Nav.Link>
+                        <Nav.Link href="/pieces">Rï¿½pertoire Admin</Nav.Link>
                         <Nav.Link href="/commandes">Voir Les Commandes Admin</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
+                <form className="d-flex">
+                    <button className="btn btn-outline-light" type="submit">
+                        <i className="bi-cart-fill me-1"></i>
+                        Cart
+                        <span className="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
             </Container>
         </Navbar>
     )

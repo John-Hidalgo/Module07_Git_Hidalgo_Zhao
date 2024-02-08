@@ -1,12 +1,25 @@
 import React from "react"
+import { Album } from "../composants/Album.js"
+import { Footer } from "../composants/Footer.js"
 export function Accueil () {
     return (
         <>
-            < h1 >Home Page</h1 >
-            <div>
-                <h3>About me</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
+            <header className="bg-dark py-5">
+                <div className="container px-4 px-lg-5 my-5">
+                    <div className="text-center text-white">
+                        <h1 className="display-4 fw-bolder">Shop Musique de caractère</h1>
+                        <p className="lead fw-normal text-white-50 mb-0">Choisissez votre propre album de musique</p>
+                    </div>
+                </div>
+            </header>
+            <section className="py-5">
+                <div className="container px-4 px-lg-5 mt-5">
+                    <div id="myBody" className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                        <Album />
+                    </div>
+                </div>
+            </section>
+            <Footer />
         </>
     )
 }
