@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-import ModifierUnePiece from '../../composants/ModifierUnePiece.js';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-const PageModifierPieceAdmin = () => 
-{
-    const navigate = useNavigate();
-  const [titre, setTitre] = useState('');
-  const [artiste, setArtiste] = useState('');
-  const [categorie, setCategorie] = useState('');
-  const { id } = useParams();
-  const isButtonActive = titre !== '' && artiste !== '' && categorie !== '';
+import React, { useState } from 'react'
+import ModifierUnePiece from '../../composants/ModifierUnePiece.js'
+import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+const PageModifierPieceAdmin = () => {
+  const navigate = useNavigate()
+  const [titre, setTitre] = useState('')
+  const [artiste, setArtiste] = useState('')
+  const [categorie, setCategorie] = useState('')
+  const { id } = useParams()
+  const isButtonActive = titre !== '' && artiste !== '' && categorie !== ''
   const gererModifierUnePiece = async () => {
-    ModifierUnePiece(id, titre, artiste, categorie,navigate);
-  };
+    ModifierUnePiece(id, titre, artiste, categorie, navigate)
+  }
 
   return (
     <div>
@@ -35,8 +34,8 @@ const PageModifierPieceAdmin = () =>
         Send
       </button>
     </div>
-  );
-};
+  )
+}
 
 export default PageModifierPieceAdmin;
 

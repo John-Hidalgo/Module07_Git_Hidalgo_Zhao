@@ -24,8 +24,8 @@ app.delete('/api/clients/:id/supprimer', SupprimerClient)
 //--------------------------------------------------------------------
 async function ObtiensClients (requete, reponse) {
     UtiliserBD(async (BD) => {
-        const pieces = await BD.collection('clients').find().toArray()
-        reponse.status(200).json(pieces)
+        const clients = await BD.collection('clients').find().toArray()
+        reponse.status(200).json(clients)
     }, reponse)
 }
 async function ObtiensClient (requete, reponse) {
@@ -36,16 +36,17 @@ async function ObtiensClient (requete, reponse) {
     }, reponse)
 }
 async function AjouterClient (requete, reponse) {
-    const { nom, abonnement } = requete.body
-    nom !== undefined && abonnement !== undefined ?
+    const { nom, abonnement, password } = requete.body
+    nom !== undefined && abonnement !== undefined && password !== undefined ?
         UtiliserBD(async (BD) => {
             await BD.collection('clients').insertOne({
                 nom,
-                abonnement
+                abonnement,
+                password
             })
             reponse.status(200).send("Client ajoutee")
         }, reponse).catch(() => reponse.status(500).send("Erreur : le client n'a pas ete ajoutee"))
-        : reponse.status(400).send(`Certains parametres ne sont pas definis: - nom: ${nom} - abonnement: ${abonnement}`)
+        : reponse.status(400).send(`Certains parametres ne sont pas definis: - nom: ${nom} - abonnement: ${abonnement} - password ${password}`)
 }
 async function ModifierClient (requete, reponse) {
     const idClient = requete.params.id
@@ -87,12 +88,10 @@ async function SupprimerClient (requete, reponse) {
     }
 }
 //--------------------------------------------------------------------
-async function GererTousPieces(requete, reponse) 
-{
-    console.log("calling handler");
-    UtiliserBD(async (BD) =>
-    {
-        console.log("calling query on db");
+async function GererTousPieces (requete, reponse) {
+    console.log("calling handler")
+    UtiliserBD(async (BD) => {
+        console.log("calling query on db")
         const pieces = await BD.collection('pieces').find().toArray()
         reponse.status(200).json(pieces)
     }, reponse)
@@ -217,22 +216,20 @@ async function GererModifierUnePiece (req, rep) {
 }
 
 
-async function UtiliserBD(operations, reponse)
-{
-    try
-    {
-        const client = await MongoClient.connect('mongodb://0.0.0.0:27017');
-        console.log('Connected to MongoDB');
-        const BD = client.db('repertoire');
-        console.log('Selected database: repertoire');
-        await operations(BD);
-        client.close();
-        console.log('Connection closed');
+async function UtiliserBD (operations, reponse) {
+    try {
+        const client = await MongoClient.connect('mongodb://0.0.0.0:27017')
+        console.log('Connected to MongoDB')
+        // const BD = client.db('repertoire');
+        const BD = client.db('Module07')
+        console.log('Selected database: repertoire')
+        await operations(BD)
+        client.close()
+        console.log('Connection closed')
     }
-    catch (error)
-    {
-        console.error('Error connecting to the database:', error);
-        reponse.status(500).json({ message: 'Erreur de connexion � la base de donn�e:', error });
+    catch (error) {
+        console.error('Error connecting to the database:', error)
+        reponse.status(500).json({ message: 'Erreur de connexion � la base de donn�e:', error })
     }
 }
 
