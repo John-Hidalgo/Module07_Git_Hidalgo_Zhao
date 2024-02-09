@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
-const Piece = ({ id }) => {
+const Piece = ({ id }) => 
+{
     const [piece, setPiece] = useState()
     useEffect(() => {
         const obtiensPiece = async () => {

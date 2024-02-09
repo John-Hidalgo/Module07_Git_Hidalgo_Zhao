@@ -4,40 +4,70 @@ import AjouterUnePiece from '../../composants/AjouterUnePiece';
 
 const PageAjouterPieceAdmin = () => 
 {
-  const [titre, setTitre] = useState('');
-  const [artiste, setArtiste] = useState('');
-  const [categorie, setCategorie] = useState('');
-
-  const isButtonActive = titre !== '' && artiste !== '' && categorie !== '';
-
-    const gererAjouterUnePiece = async () => 
+    const [titre, setTitre] = useState('');
+    const [artiste, setArtiste] = useState('');
+    const [categories, setCategories] = useState(['']);
+    const [boutonActif, setBoutonActif] = useState(false);
+    const GererAjouterNouvelleCategorie = (index, value) => 
     {
-        AjouterUnePiece(titre,artiste,categorie);
+        const newCategories = [...categories];
+        newCategories[index] = value;
+        setCategories(newCategories);
+        setBoutonActif(newCategories.some((category) => category !== ''));
     };
-  return (
-      <Container>
-          <br />
-          Veuillez entrer le nom de l’artiste titre et la catégorie pour ajouter une nouvelle pièce à votre répertoire.
-          <br /><br />
-          <InputGroup className="mb-3">
-              <InputGroup.Text>Titre:</InputGroup.Text>
-              <FormControl value={titre} onChange={(e) => setTitre(e.target.value)} />
-          </InputGroup>
-
-          <InputGroup className="mb-3">
-              <InputGroup.Text>Artiste:</InputGroup.Text>
-              <FormControl value={artiste} onChange={(e) => setArtiste(e.target.value)} />
-          </InputGroup>
-
-          <InputGroup className="mb-3">
-              <InputGroup.Text>Categorie:</InputGroup.Text>
-              <FormControl value={categorie} onChange={(e) => setCategorie(e.target.value)} />
-          </InputGroup>
-
-          <Button variant="primary" onClick={gererAjouterUnePiece} disabled={!isButtonActive}>
-              Ajoutez
-          </Button>
-      </Container>
+    const AjouterNouvelleEntree = () => 
+    {
+        setCategories([...categories, '']);
+    };
+    const gererAjouterUnePiece = async () => {
+    const nonEmptyCategories = categories.filter(category => category.trim() !== '');
+    AjouterUnePiece(titre, artiste, nonEmptyCategories);
+};
+    return (
+        <Container>
+        <br />
+            Veuillez entrer le nom de lâ€™artiste titre et la catÃ©gorie pour ajouter une nouvelle piÃ¨ce Ã  votre rÃ©pertoire.
+        <br /><br />
+        <label>
+            Titre:
+            <InputGroup className="mb-3">
+                <FormControl
+                    type="text"
+                    value={titre}
+                    onChange={(e) => setTitre(e.target.value)}
+                />
+            </InputGroup>
+        </label>
+        <br />
+        <label>
+            Artiste:
+            <InputGroup className="mb-3">
+                <FormControl
+                    type="text"
+                    value={artiste}
+                    onChange={(e) => setArtiste(e.target.value)}
+                />
+            </InputGroup>
+        </label>
+        <br />
+        <label>
+            Categories:
+            {categories.map((category, index) => (
+                <div key={index} className="mb-3">
+                    <InputGroup>
+                        <FormControl
+                            type="text"
+                            value={category}
+                            onChange={(e) => GererAjouterNouvelleCategorie(index, e.target.value)}
+                        />
+                    </InputGroup>
+                </div>
+            ))}
+        <Button onClick={AjouterNouvelleEntree}> Ajoutez une categorie</Button>
+        </label>
+        <br /><br />
+        <Button onClick={gererAjouterUnePiece} disabled={!boutonActif}>Ajouter Ã  votre rÃ©pertoire </Button>
+        </Container>
   );
 };
 

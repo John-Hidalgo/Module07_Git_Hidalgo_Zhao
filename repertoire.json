@@ -2,7 +2,7 @@
   {
     "titre": "My life",
     "artiste": "DJ NoName",
-    "categorie": "�lectronica"
+    "categorie": "Électronica"
   },
   {
     "titre": "Growing Up",
@@ -12,12 +12,12 @@
   {
     "titre": "Cities Of The Future",
     "artiste": "Infected Mushroom",
-    "categorie": "�lectronica"
+    "categorie": "Électronica"
   },
   {
     "titre": "Gamma Goblins",
     "artiste": "Infected Mushroom",
-    "categorie": "�lectronica"
+    "categorie": "Électronica"
   },
   {
     "titre": "Hard days",
@@ -31,18 +31,18 @@
   },
   {
     "titre": "Betrayal",
-    "artiste": "C�line Dion",
+    "artiste": "Céline Dion",
     "categorie": "Pop"
   },
   {
     "titre": "Goes On",
-    "artiste": "C�line Dion",
+    "artiste": "Céline Dion",
     "categorie": "Soft"
   },
   {
     "titre": "Sad World",
-    "artiste": "C�line Dion",
-    "categorie": "Vari�t� fran�aise"
+    "artiste": "Céline Dion",
+    "categorie": "Variété francaise"
   },
   {
     "titre": "Red flowers",
@@ -73,6 +73,46 @@
     "titre": "Stomp!",
     "artiste": "The Brothers Johnson",
     "categorie": "Soul"
+  },
+  {
+    "titre": "Sultans of Swing",
+    "artiste": "Dire Straits",
+    "categorie": ["Rock", "Blues"]
+  },
+  {
+    "titre": "Money for Nothing",
+    "artiste": "Dire Straits",
+    "categorie": ["Rock"]
+  },
+  {
+    "titre": "Hey Jude",
+    "artiste": "The Beatles",
+    "categorie": ["Rock", "Pop"]
+  },
+  {
+    "titre": "Let It Be",
+    "artiste": "The Beatles",
+    "categorie": ["Rock", "Ballad"]
+  },
+  {
+    "titre": "Space Oddity",
+    "artiste": "David Bowie",
+    "categorie": ["Rock", "Space"]
+  },
+  {
+    "titre": "Heroes",
+    "artiste": "David Bowie",
+    "categorie": ["Rock", "Alternative"]
+  },
+  {
+    "titre": "My Girl",
+    "artiste": "Chilliwack",
+    "categorie": ["Rock", "Pop"]
+  },
+  {
+    "titre": "Whatcha Gonna Do",
+    "artiste": "Chilliwack",
+    "categorie": ["Rock"]
   }
 ]
 
