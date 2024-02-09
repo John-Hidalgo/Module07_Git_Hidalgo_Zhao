@@ -151,5 +151,56 @@
     ],
     "etat": 1,
     "date": "2024-02-25"
-  }
+  },
+  {
+    "nomClient": "David Wilson",
+    "ListeDemande": [
+      {
+        "titre": "Red flowers",
+        "artiste": "Hipster2.0",
+        "categorie": ["Emo"]
+      },
+      {
+        "titre": "Loser",
+        "artiste": "Hipster2.0",
+        "categorie": ["Emo"]
+      }
+    ],
+    "etat": 1,
+    "date": "2024-02-04"
+  },
+  {
+    "nomClient": "Eva Miller",
+    "ListeDemande": [
+      {
+        "titre": "Cities Of The Future",
+        "artiste": "Infected Mushroom",
+        "categorie": ["Électronica"]
+      },
+      {
+        "titre": "Gamma Goblins",
+        "artiste": "Infected Mushroom",
+        "categorie": ["Électronica"]
+      }
+    ],
+    "etat": 0,
+    "date": "2024-02-03"
+    },
+    {
+      "nomClient": "Bob Smith",
+      "ListeDemande": [
+        {
+          "titre": "Hard days",
+          "artiste": "Loupol",
+          "categorie": ["Rock"]
+        },
+        {
+          "titre": "Money",
+          "artiste": "Pink Floyd",
+          "categorie": ["Rock"]
+        }
+      ],
+      "etat": 1,
+      "date": "2024-02-02"
+    }
 ]
