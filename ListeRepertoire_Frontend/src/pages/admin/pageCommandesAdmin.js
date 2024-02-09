@@ -109,7 +109,10 @@ const PageCommandesAdmin = () =>
                       {commande.ListeDemande.map((demande, i) => (
                          
                           <ListGroupItem key={i}>
-                              <strong>{demande.titre}</strong> par {demande.artiste} genre: {demande.categorie}
+                              <strong>{demande.titre}</strong> par <strong>{demande.artiste}</strong>{" "} 
+                              {Array.isArray(demande.categorie) ?
+                                `Genres: ${demande.categorie.join(', ')}` :
+                                `Genre: ${demande.categorie}`}
                           </ListGroupItem>
                       ))}
                       
