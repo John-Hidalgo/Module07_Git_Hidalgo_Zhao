@@ -2,7 +2,7 @@ import React from 'react'
 import Container from 'react-bootstrap/Container'
 import { Navbar } from 'react-bootstrap'
 import { Nav } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const BarreNavigation = () => {
     return (
@@ -13,7 +13,7 @@ export const BarreNavigation = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/admin">Admin</Nav.Link>
-                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link href="/login">Inscrire</Nav.Link>
                         <Nav.Link href="/articles">Pieces</Nav.Link>
                         <Nav.Link href="/ajouter">Ajouter</Nav.Link>
                         <Nav.Link href="/client-repo">Repo</Nav.Link>
