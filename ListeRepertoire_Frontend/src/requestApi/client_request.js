@@ -17,6 +17,17 @@ async function getTheClient (id) {
     }
 }
 
+
+async function getClientByName (nom, motDePasse) {
+    try {
+        const response = await fetch(`/api/clients/${nom}/${motDePasse}`)
+        return await response.json()
+    } catch (message) {
+        return console.error(message)
+    }
+}
+
+
 async function addTheClient (nom, abonnement, password) {
     try {
         const resultat = await fetch(`/api/clients/ajouter`, {
@@ -62,7 +73,7 @@ async function deleteTheClient (_id) {
         console.log(err.message)
     }
 }
-export { getAllClient, getTheClient, addTheClient, updateClient, deleteTheClient, formatDate }
+export { getAllClient, getTheClient, getClientByName, addTheClient, updateClient, deleteTheClient, formatDate }
 
 function formatDate () {
     const date = new Date(Date.now())

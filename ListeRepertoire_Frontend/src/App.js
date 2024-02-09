@@ -3,6 +3,7 @@ import './App.css'
 import { Accueil } from './pages/Accueil'
 import { Admin } from './pages/Admin'
 import { Inscription } from './pages/Inscription.js'
+import { ClientLogin } from './pages/ClientLogin.js'
 import { Ajouter } from './pages/Ajouter'
 import PageRepertoireClients from './pages/pageRepertoireClients.js'
 import Container from 'react-bootstrap/Container'
@@ -31,9 +32,10 @@ function App () {
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/login" element={<Inscription />} />
-          <Route path="/articles" element={<PageRepertoireClients />} />
-          <Route path="/ajouter" element={<Ajouter />} />
+          <Route path="/inscrire" element={<Inscription />} />
+          <Route path="/login" element={<ClientLogin />} />
+          {/* <Route path="/articles" element={<PageRepertoireClients />} /> */}
+          {/* <Route path="/ajouter" element={<Ajouter />} /> */}
           <Route path="/client-repo" element={<Client_Repo />} />
           <Route path="/client-liste" element={<Client_Creer_Liste />} />
           <Route path="/pieces" element={<PagePiecesAdmin />} />
