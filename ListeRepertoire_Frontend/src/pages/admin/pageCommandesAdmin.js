@@ -74,7 +74,7 @@ const PageCommandesAdmin = () =>
   return (
       <Container>
             <br/>
-          <Button variant="primary" onClick={() => GererVoirCommandesInactif()}>Voir les Commandes inactif</Button>{' '}
+          <Button variant="primary" onClick={() => GererVoirCommandesInactif()}>Voir les Commandes actives</Button>{' '}
           <Button variant="info" onClick={() => GererTrierParDate()}>{buttonText}</Button>{' '}
           <Button variant="success" onClick={() => GererVoirTopCinque()}>Les 5 pièces les plus demandées</Button>{' '}
           <br /><br />
