@@ -2,15 +2,29 @@ import React, { useState } from 'react'
 import ModifierUnePiece from '../../composants/ModifierUnePiece.js'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-const PageModifierPieceAdmin = () => {
-  const navigate = useNavigate()
-  const [titre, setTitre] = useState('')
-  const [artiste, setArtiste] = useState('')
-  const [categorie, setCategorie] = useState('')
+const PageModifierPieceAdmin = () => 
+{
+  const [titre, setTitre] = useState('');
+  const [artiste, setArtiste] = useState('');
+  const [categories, setCategories] = useState(['']);
+  const [boutonActif, setBoutonActif] = useState(false);
+  const navigate = useNavigate();
+  const GererAjouterNouvelleCategorie = (index, value) => 
+  {
+    const newCategories = [...categories];
+    newCategories[index] = value;
+    setCategories(newCategories);
+    setBoutonActif(newCategories.some((category) => category !== ''));
+  };
+  const AjouterNouvelleEntree = () => 
+  {
+      setCategories([...categories, '']);
+  };
   const { id } = useParams()
-  const isButtonActive = titre !== '' && artiste !== '' && categorie !== ''
-  const gererModifierUnePiece = async () => {
-    ModifierUnePiece(id, titre, artiste, categorie, navigate)
+
+  const gererModifierUnePiece = async () => 
+  {
+    ModifierUnePiece(id, titre, artiste, categories, navigate)
   }
 
   return (
@@ -27,10 +41,10 @@ const PageModifierPieceAdmin = () => {
       <br />
       <label>
         Categorie:
-        <input type="text" value={categorie} onChange={(e) => setCategorie(e.target.value)} />
+        <input type="text" value={categories} onChange={(e) => setCategories(e.target.value)} />
       </label>
       <br />
-      <button onClick={gererModifierUnePiece} disabled={!isButtonActive}>
+      <button onClick={gererModifierUnePiece} disabled={!boutonActif}>
         Send
       </button>
     </div>
