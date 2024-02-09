@@ -1,20 +1,24 @@
-import ObtiensCommandes from "./ObtiensCommandes.js";
-
 const DesactiverCommande = async (_id, setCommandes,ObtiensCommandes) =>
 {
-  try {
+  try 
+  {
     const response = await fetch(`/api/commandes/${_id}/inactif`, {
       method: 'PUT',
     });
 
-    if (response.ok) {
+    if (response.ok) 
+    {
       const updatedCommandes = await ObtiensCommandes();
       setCommandes(updatedCommandes);
       console.log(`Button clicked for ${_id}`);
-    } else {
+    }
+    else
+    {
       console.error('PUT request failed');
     }
-  } catch (error) {
+  }
+  catch (error)
+  {
     console.error('Error updating data:', error);
   }
 };
