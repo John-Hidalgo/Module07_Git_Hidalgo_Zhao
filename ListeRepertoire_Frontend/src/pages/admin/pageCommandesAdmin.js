@@ -102,7 +102,7 @@ const PageCommandesAdmin = () =>
                           Commande est livrée
                       </div>
                   )}
-                  <p>Date de livraison: {commande.date}</p>
+                  <p>Date de début de la commande: {commande.date}</p>
                   <ListGroup>
                       
                       Pièces commandées :

@@ -11,7 +11,7 @@ const PageCommandesActifAdmin = () =>
             <h2>{commande.nomClient}</h2>
             <p>id: {commande._id}</p>
             {/* <p>Etat: {commande.etat}</p> */}
-            <p>Date: {commande.date}</p>
+            <p>Date de début de la commande: {commande.date}</p>
             <ul>
             {commande.ListeDemande.map((demande, i) => (
                 <li key={i}>
