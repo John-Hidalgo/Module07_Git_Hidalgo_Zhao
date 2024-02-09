@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 
 export function Album () {
     const [pieces, setpieces] = useState([])
-
     useEffect(() => {
         async function fetchData () {
             try {

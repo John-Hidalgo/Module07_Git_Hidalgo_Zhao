@@ -16,13 +16,15 @@ app.get('/api/commandes/actif', GererObtiensCommandesActif)
 app.get('/api/commandes/:id', TrouverUneCommande)
 app.post('/api/commandes/ajouter', AjouterUneCommande)
 app.put('/api/commandes/:id/inactif', GererMetsCommandesInactif)
-app.put('/api/commandes/:id/ajouter', ModifierAjouterUnePieceDansCommande)
+app.put('/api/commandes/:nomCommande/ajouter', ModifierAjouterUnePieceDansCommande)
 app.put('/api/commandes/:id/modifier', ModifierCommande)
 app.delete('/api/commandes/:id/supprimer', DeleteUneCommande)
 //--------------------------------------------------------------------
 app.get('/api/clients', ObtiensClients)
 app.get('/api/clients/:id', ObtiensClient)
+// app.get('/api/clients/:nom/:motdePass', ObtiensClientByNom)
 app.post('/api/clients/ajouter', AjouterClient)
+app.post('/api/login', ObtiensClientByNom)
 app.put('/api/clients/:id/modifier', ModifierClient)
 app.delete('/api/clients/:id/supprimer', SupprimerClient)
 //--------------------------client------------------------------------------
@@ -37,6 +39,17 @@ async function ObtiensClient (requete, reponse) {
         const idClient = requete.params.id
         const infoClient = await BD.collection('clients').findOne({ _id: new ObjectId(idClient) })
         reponse.status(200).json(infoClient)
+    }, reponse)
+}
+async function ObtiensClientByNom (requete, reponse) {
+    const { nom, password } = requete.body
+    UtiliserBD(async (BD) => {
+        const infoClient = await BD.collection('clients').findOne({ nom: nom, password: password })
+        if (infoClient) {
+            reponse.status(200).json(infoClient)
+        } else {
+            res.status(401).json({ error: 'Login Failed!' })
+        }
     }, reponse)
 }
 async function AjouterClient (requete, reponse) {
@@ -187,7 +200,7 @@ async function TrouverUneCommande (requete, reponse) {
     }, reponse)
 }
 async function ModifierAjouterUnePieceDansCommande (requete, reponse) {
-    const idListe = requete.params.id
+    const nomCommande = requete.params.nomCommande
     const { titre, artiste, categorie } = requete.body
     if (titre !== undefined || artiste !== undefined || categorie !== undefined) {
         UtiliserBD(async (BD) => {
@@ -196,12 +209,12 @@ async function ModifierAjouterUnePieceDansCommande (requete, reponse) {
             updateObject.artiste = artiste
             updateObject.categorie = categorie
             //根据id找到源liste
-            const ele = await BD.collection('demandes').findOne({ _id: new ObjectId(idListe) })
+            const ele = await BD.collection('demandes').findOne({ nomCommande: nomCommande })
             const oldList = ele['ListeDemande']
             //update en Rajoutant
             oldList.push(updateObject)
             console.log(oldList)
-            const result = await BD.collection('demandes').updateOne({ _id: new ObjectId(idListe) }, { $set: { "ListeDemande": oldList } })
+            const result = await BD.collection('demandes').updateOne({ nomCommande: nomCommande }, { $set: { "ListeDemande": oldList } })
             if (result.modifiedCount > 0) {
                 reponse.status(200).send("Liste modifiee avec succes")
             }
