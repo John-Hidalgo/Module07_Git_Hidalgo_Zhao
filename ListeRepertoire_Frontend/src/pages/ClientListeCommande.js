@@ -63,7 +63,7 @@ export default function ClientListeCommande () {
                         </Form>
                     </Col>
                 </Row>
-                <Listes listes={listeCommande.map(d => d.ListeDemande)} handlClickDelete={deletePiece} />
+                <Listes listes={listeCommande.map(d => { return { ListeDemande: d.ListeDemande, nomCommande: d.nomCommande } })} handlClickDelete={deletePiece} />
             </Container >
         </>
     )

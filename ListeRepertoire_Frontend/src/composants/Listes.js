@@ -8,6 +8,7 @@ export function Listes ({ listes, handlClickDelete }) {
         <Table className="table table-striped table-dark">
             <thead>
                 <tr>
+                    <th scope="col">Nom Liste</th>
                     <th scope="col">#</th>
                     <th scope="col">Titre</th>
                     <th scope="col">Artiste</th>
@@ -17,30 +18,38 @@ export function Listes ({ listes, handlClickDelete }) {
             </thead>
             <tbody>
                 {listes.map((l, indexListe) => {
-                    return (
-                        <>
-                            <tr key={indexListe}>
-                                <td>
-                                    <h3 >Liste {indexListe + 1}</h3 >
-                                </td>
-                            </tr>
-                            {
-                                l.map((piece, indexPiece) => {
-                                    return (
-                                        <tr key={indexPiece}>
-                                            <th>{indexPiece + 1}</th>
-                                            <td id={indexPiece + "titre"}>{piece.titre}</td>
-                                            <td id={indexPiece + "artiste"}>{piece.artiste}</td>
-                                            <td id={indexPiece + "categorie"}>{piece.categorie}</td>
-                                            <td>
-                                                <Button alt={indexPiece} variant="danger" onClick={() => handlClickDelete(indexListe, indexPiece)} size="sm" className="m-1">Delete</Button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </>
-                    )
+                    if (l.ListeDemande[0].titre !== undefined) {
+                        return (
+                            <>
+                                <tr key={indexListe}>
+                                    <td>
+                                        <h3 >Liste : {l.nomCommande}</h3 >
+                                    </td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                </tr>
+                                {
+                                    l.ListeDemande.map((piece, indexPiece) => {
+                                        return (
+                                            <tr key={indexPiece}>
+                                                <th id={indexPiece + "titre"}></th>
+                                                <th>{indexPiece + 1}</th>
+                                                <td id={indexPiece + "titre"}>{piece.titre}</td>
+                                                <td id={indexPiece + "artiste"}>{piece.artiste}</td>
+                                                <td id={indexPiece + "categorie"}>{piece.categorie}</td>
+                                                <td>
+                                                    <Button alt={indexPiece} variant="danger" onClick={() => handlClickDelete(indexListe, indexPiece)} size="sm" className="m-1">Delete</Button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </>
+                        )
+                    }
                 })}
             </tbody>
         </Table >
