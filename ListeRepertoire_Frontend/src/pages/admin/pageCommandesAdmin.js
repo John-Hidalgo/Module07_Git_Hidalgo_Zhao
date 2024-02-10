@@ -74,7 +74,7 @@ const PageCommandesAdmin = () =>
   return (
       <Container>
             <br/>
-          <Button variant="primary" onClick={() => GererVoirCommandesInactif()}>Voir les Commandes inactif</Button>{' '}
+          <Button variant="primary" onClick={() => GererVoirCommandesInactif()}>Voir les Commandes actives</Button>{' '}
           <Button variant="info" onClick={() => GererTrierParDate()}>{buttonText}</Button>{' '}
           <Button variant="success" onClick={() => GererVoirTopCinque()}>Les 5 pièces les plus demandées</Button>{' '}
           <br /><br />
@@ -102,14 +102,17 @@ const PageCommandesAdmin = () =>
                           Commande est livrée
                       </div>
                   )}
-                  <p>Date de livraison: {commande.date}</p>
+                  <p>Date de début de la commande: {commande.date}</p>
                   <ListGroup>
                       
                       Pièces commandées :
                       {commande.ListeDemande.map((demande, i) => (
                          
                           <ListGroupItem key={i}>
-                              <strong>{demande.titre}</strong> par {demande.artiste} genre: {demande.categorie}
+                              <strong>{demande.titre}</strong> par <strong>{demande.artiste}</strong>{" "} 
+                              {Array.isArray(demande.categorie) ?
+                                `Genres: ${demande.categorie.join(', ')}` :
+                                `Genre: ${demande.categorie}`}
                           </ListGroupItem>
                       ))}
                       

@@ -22,7 +22,10 @@ const TopCinquePiece = () =>
             <ListGroup>
             {topCinque.map((demande, i) => (
                 <ListGroupItem key={i}>
-                    <strong>{demande.titre}</strong> par {demande.artiste} dans le genre {demande.categorie}
+                    <strong>{demande.titre}</strong> par <strong>{demande.artiste}</strong>{" "} 
+                        {Array.isArray(demande.categorie) ?
+                        `Genres: ${demande.categorie.join(', ')}` :
+                        `Genre: ${demande.categorie}`}
                 </ListGroupItem>
             ))}
             </ListGroup>

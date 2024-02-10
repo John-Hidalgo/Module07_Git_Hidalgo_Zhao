@@ -10,12 +10,15 @@ const PageCommandesActifAdmin = () =>
         <div key={index}>
             <h2>{commande.nomClient}</h2>
             <p>id: {commande._id}</p>
-            <p>Etat: {commande.etat}</p>
-            <p>Date: {commande.date}</p>
+            {/* <p>Etat: {commande.etat}</p> */}
+            <p>Date de début de la commande: {commande.date}</p>
             <ul>
             {commande.ListeDemande.map((demande, i) => (
                 <li key={i}>
-                    <strong>{demande.titre}</strong> by {demande.artiste} ({demande.categorie})   
+                    <strong>{demande.titre}</strong> par <strong>{demande.artiste}</strong>{" "} 
+                        {Array.isArray(demande.categorie) ?
+                        `Genres: ${demande.categorie.join(', ')}` :
+                        `Genre: ${demande.categorie}`}
                 </li>
             ))}
             </ul>
