@@ -23,6 +23,7 @@ import {
   Route
 } from 'react-router-dom'
 import { Client_Creer_Liste } from './pages/Client_Creer_Liste.js'
+import ClientListeCommande from './pages/ClientListeCommande.js'
 
 function App () {
   return (
@@ -38,6 +39,7 @@ function App () {
           {/* <Route path="/ajouter" element={<Ajouter />} /> */}
           <Route path="/client-repo" element={<Client_Repo />} />
           <Route path="/client-liste" element={<Client_Creer_Liste />} />
+          <Route path="/maliste" element={<ClientListeCommande />} />
           <Route path="/pieces" element={<PagePiecesAdmin />} />
           <Route path="/piecesAjouter" element={<PageAjouterPieceAdmin />} />
           <Route path="/commandes" element={<PageCommandesAdmin />} />

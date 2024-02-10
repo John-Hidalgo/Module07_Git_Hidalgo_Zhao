@@ -1,5 +1,4 @@
-﻿
-[
+﻿[
   {
     "nomClient": "Alice Johnson",
     "ListeDemande": [
@@ -15,7 +14,8 @@
       }
     ],
     "etat": 0,
-    "date": "2024-02-01"
+    "date": "2024-02-01",
+    "nomCommande": "commande_01"
   },
   {
     "nomClient": "Bob Williams",
@@ -32,7 +32,8 @@
       }
     ],
     "etat": 0,
-    "date": "2024-02-03"
+    "date": "2024-02-03",
+    "nomCommande": "commande_02"
   },
   {
     "nomClient": "Charlie Davis",
@@ -49,7 +50,8 @@
       }
     ],
     "etat": 1,
-    "date": "2024-02-05"
+    "date": "2024-02-05",
+    "nomCommande": "commande_03"
   },
   {
     "nomClient": "Diana Miller",
@@ -66,9 +68,9 @@
       }
     ],
     "etat": 1,
-    "date": "2024-02-07"
+    "date": "2024-02-07",
+    "nomCommande": "commande_04"
   },
-  
   {
     "nomClient": "Eva White",
     "ListeDemande": [
@@ -89,7 +91,8 @@
       }
     ],
     "etat": 0,
-    "date": "2024-02-10"
+    "date": "2024-02-10",
+    "nomCommande": "commande_05"
   },
   {
     "nomClient": "Frank Turner",
@@ -106,7 +109,8 @@
       }
     ],
     "etat": 0,
-    "date": "2024-02-15"
+    "date": "2024-02-15",
+    "nomCommande": "commande_06"
   },
   {
     "nomClient": "Grace Smith",
@@ -128,7 +132,8 @@
       }
     ],
     "etat": 1,
-    "date": "2024-02-20"
+    "date": "2024-02-20",
+    "nomCommande": "commande_07"
   },
   {
     "nomClient": "Henry Turner",
@@ -150,7 +155,8 @@
       }
     ],
     "etat": 1,
-    "date": "2024-02-25"
+    "date": "2024-02-25",
+    "nomCommande": "commande_08"
   },
   {
     "nomClient": "David Wilson",
@@ -158,16 +164,21 @@
       {
         "titre": "Red flowers",
         "artiste": "Hipster2.0",
-        "categorie": ["Emo"]
+        "categorie": [
+          "Emo"
+        ]
       },
       {
         "titre": "Loser",
         "artiste": "Hipster2.0",
-        "categorie": ["Emo"]
+        "categorie": [
+          "Emo"
+        ]
       }
     ],
     "etat": 1,
-    "date": "2024-02-04"
+    "date": "2024-02-04",
+    "nomCommande": "commande_09"
   },
   {
     "nomClient": "Eva Miller",
@@ -175,32 +186,42 @@
       {
         "titre": "Cities Of The Future",
         "artiste": "Infected Mushroom",
-        "categorie": ["Électronica"]
+        "categorie": [
+          "Électronica"
+        ]
       },
       {
         "titre": "Gamma Goblins",
         "artiste": "Infected Mushroom",
-        "categorie": ["Électronica"]
+        "categorie": [
+          "Électronica"
+        ]
       }
     ],
     "etat": 0,
-    "date": "2024-02-03"
-    },
-    {
-      "nomClient": "Bob Smith",
-      "ListeDemande": [
-        {
-          "titre": "Hard days",
-          "artiste": "Loupol",
-          "categorie": ["Rock"]
-        },
-        {
-          "titre": "Money",
-          "artiste": "Pink Floyd",
-          "categorie": ["Rock"]
-        }
-      ],
-      "etat": 1,
-      "date": "2024-02-02"
-    }
+    "date": "2024-02-03",
+    "nomCommande": "commande_10"
+  },
+  {
+    "nomClient": "Bob Smith",
+    "ListeDemande": [
+      {
+        "titre": "Hard days",
+        "artiste": "Loupol",
+        "categorie": [
+          "Rock"
+        ]
+      },
+      {
+        "titre": "Money",
+        "artiste": "Pink Floyd",
+        "categorie": [
+          "Rock"
+        ]
+      }
+    ],
+    "etat": 1,
+    "date": "2024-02-02",
+    "nomCommande": "commande_11"
+  }
 ]

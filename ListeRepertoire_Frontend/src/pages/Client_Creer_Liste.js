@@ -13,6 +13,7 @@ import { addTheCommande } from '../requestApi/panier_request.js'
 
 export function Client_Creer_Liste () {
     const [nomClient, setnomClient] = useState('')
+    const [nomCommande, setnomCommande] = useState('')
     return (
         <>
             <h1>Creer une Liste de demandes </h1>
@@ -29,13 +30,22 @@ export function Client_Creer_Liste () {
                                     onChange={(e) => setnomClient(e.target.value)}
                                 />
                             </Form.Group>
+                            <Form.Group className="mb-3" controlId="formNomCommande">
+                                <Form.Label>Entrez votre nom personnalise pour la liste de demandes: </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Entrez votre nom de la liste"
+                                    value={nomCommande}
+                                    onChange={(e) => setnomCommande(e.target.value)}
+                                />
+                            </Form.Group>
                             <Button
                                 variant="primary"
                                 type="submit"
                                 onClick={
-                                    (e) => { addTheCommande(nomClient, []) }
+                                    (e) => { addTheCommande(nomClient, [], nomCommande) }
                                 }
-                                disabled={!(nomClient !== '')}
+                                disabled={!(nomClient !== '' || nomCommande !== '')}
                             >
                                 Ajouter
                             </Button>
