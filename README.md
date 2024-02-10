@@ -123,3 +123,5 @@ TP
 | page Liste commande Client |   3 h    |
 | page Repertoire Client     |   3 h    |
 | page Creer Liste Client     |   30 min   |
+| serveur-api-clients-commandes    |   1 h   |
+| requestApi-methodes-fetch    |  2 h   |
