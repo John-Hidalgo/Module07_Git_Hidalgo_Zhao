@@ -12,6 +12,7 @@ app.put('/api/pieces/:id/modifier', GererModifierUnePiece)
 app.delete('/api/pieces/:id/supprimer', GererSupprimerUnePiece)
 //--------------------------------------------------------------------
 app.get('/api/commandes', GererObtiensCommandes)
+app.get('/api/commandes/:nomClient', ObtiensCommandesClient)
 app.get('/api/commandes/actif', GererObtiensCommandesActif)
 app.get('/api/commandes/:id', TrouverUneCommande)
 app.post('/api/commandes/ajouter', AjouterUneCommande)
@@ -179,14 +180,15 @@ async function GererSupprimerUnePiece (requete, reponse) {
 }
 //----------------------------commande--------------------------------------
 async function AjouterUneCommande (requete, reponse) {
-    const { nomClient, ListeDemande, etat, date } = requete.body
-    nomClient !== undefined && ListeDemande !== undefined && etat != undefined && date != undefined ?
+    const { nomClient, ListeDemande, etat, date, nomCommande } = requete.body
+    nomClient !== undefined && ListeDemande !== undefined && etat != undefined && date != undefined && nomCommande != undefined ?
         UtiliserBD(async (BD) => {
             await BD.collection('demandes').insertOne({
                 nomClient,
                 ListeDemande,
                 etat,
-                date
+                date,
+                nomCommande
             })
             reponse.status(200).send("Commande ajoutee")
         }, reponse).catch(() => reponse.status(500).send("Erreur : la Commande n'a pas ete ajoutee"))
@@ -256,6 +258,13 @@ async function GererObtiensCommandes (req, rep) {
         const commandes = await db.collection('demandes').find().toArray()
         rep.status(200).json(commandes)
     }, rep)
+}
+async function ObtiensCommandesClient (requete, reponse) {
+    UtiliserBD(async (BD) => {
+        const nomClient = requete.params.nomClient
+        const liste = await BD.collection('demandes').find({ nomClient: nomClient }).toArray()
+        reponse.status(200).json(liste)
+    }, reponse)
 }
 async function GererObtiensCommandesActif (req, rep) {
     UtiliserBD(async (db) => {

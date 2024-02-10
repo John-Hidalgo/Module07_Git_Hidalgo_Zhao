@@ -27,7 +27,7 @@ async function getCommandeActif () {
     }
 }
 
-async function addTheCommande (nomClient, ListeDemande) {
+async function addTheCommande (nomClient, ListeDemande, nomCommande) {
     try {
         const resultat = await fetch(`/api/commandes/ajouter`, {
             method: "POST",
@@ -35,7 +35,8 @@ async function addTheCommande (nomClient, ListeDemande) {
                 nomClient: nomClient,
                 ListeDemande: ListeDemande,
                 etat: "1",
-                date: formatDate()
+                date: formatDate(),
+                nomCommande: nomCommande
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -47,7 +48,7 @@ async function addTheCommande (nomClient, ListeDemande) {
     }
 }
 
-async function updateTheCommande (_id, nomClient, ListeDemande, etat, date) {
+async function updateTheCommande (_id, nomClient, ListeDemande, etat, date, nomCommande) {
     try {
         const raw = await fetch(`/api/commandes/${_id}/modifier`, {
             method: "PUT",
@@ -56,7 +57,8 @@ async function updateTheCommande (_id, nomClient, ListeDemande, etat, date) {
                 nomClient: nomClient,
                 etat: etat,
                 date: date,
-                ListeDemande: ListeDemande
+                ListeDemande: ListeDemande,
+                nomCommande: nomCommande
             }),
         })
         console.log(raw.json())
