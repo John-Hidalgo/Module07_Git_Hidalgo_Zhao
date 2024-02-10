@@ -60,7 +60,7 @@ Sur Git, organisez vos travaux de manière à éviter de faire des commits en pa
 TP
 
 - pieces
-- demandes
+- commandes
 - clients
 ## Liste du taches
 
@@ -71,23 +71,33 @@ TP
 | pieces   | POST   | /api/pieces/ajouter         |          |
 | pieces   | PUT    | /api/pieces/:id/modifier    |          |
 | pieces   | DELETE | /api/pieces/:id/supprimer   |          |
-| demandes | GET    | /api/demandes               |          |
-| demandes | GET    | /api/demandes/:id           |          |
-| demandes | POST   | /api/demandes/ajouter       |          |
-| demandes | PUT    | /api/demandes/:id/modifier  |          |
-| demandes | DELETE | /api/demandes:/id/supprimer |          |
+| demandes | GET    | /api/commandes              |          |
+| demandes | GET    | /api/commandes/:nomClient   |          |
+| demandes | GET    | /api/commandes/actift       |          |
+| demandes | GET    | /api/commandes/:id          |          |
+| demandes | POST   | /api/commandes/ajouter      |          |
+| demandes | PUT    | /api/commandes/:id/inactif  |          |
+| demandes | PUT    |/api/commandes/:nomCommande/ajouter  |          |
+| demandes | PUT    | /api/commandes/:id/modifier  |          |
+| demandes | DELETE | /api/commandes:/id/supprimer |          |
 | clients  | Get    | /api/clients                |          |
 | clients  | GET    | /api/clients/:id            |          |
 | clients  | POST   | /api/clients/ajouter        |          |
+| clients  | POST   | /api/login                  |          |
 | clients  | PUT    | /api/clients:/id/modifer    |          |
 | clients  | DELETE | /api/clients:/id/supprimer  |          |
 
 ## Pages
 
-- Accueil
+- Home
 - Admin
-- Repo
-- Client-Compte
+- Inscrire
+- Login
+- Liste(s) commande du client
+- Repertoire Client
+- Client-Creer-Liste
+- Repertoire Admin
+- Les manipulations Admin
 
 ### John
 
@@ -106,8 +116,10 @@ TP
 
 | tache     | temps |
 | --------- | ----- |
-| A remplir |       |
-| A remplir |       |
-| A remplir |       |
-| A remplir |       |
-| A remplir |       |
+| page home |   2h  |
+| page Admin| 1.5h  |
+| page Inscrire |  1h     |
+| page Login |   50 min    |
+| page Liste commande Client |   3 h    |
+| page Repertoire Client     |   3 h    |
+| page Creer Liste Client     |   30 min   |
