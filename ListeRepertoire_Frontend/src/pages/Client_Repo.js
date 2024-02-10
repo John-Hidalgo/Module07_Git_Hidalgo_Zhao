@@ -7,6 +7,19 @@ export function Client_Repo () {
     const [pieces, setrepo] = useState([])
     const [items, setItems] = useState([])
     const [selectedOptions, setSelectedOptions] = useState([])
+    const [sortOrder, setSortOrder] = useState('asc')
+
+    const handleSort = (key) => {
+        const sortedData = [...pieces].sort((a, b) => {
+            if (sortOrder === 'asc') {
+                return ((a[key] > b[key]) ? 1 : -1)
+            } else {
+                return ((b[key] > a[key]) ? 1 : -1)
+            }
+        })
+        setrepo(sortedData)
+        setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
+    }
     useEffect(() => {
         fetch(`/api/commandes`)
             .then(resultat => resultat.json())
@@ -45,16 +58,18 @@ export function Client_Repo () {
         updatedOptions[index] = event.target.value
         setSelectedOptions(updatedOptions)
     }
-    pieces.sort((a, b) =>
-        (a.categorie > b.categorie) ? 1 : -1)
+    // pieces.sort((a, b) =>
+    //     (a.categorie > b.categorie) ? 1 : -1)
     return (
         <Table className="table table-striped table-dark">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Titre</th>
-                    <th scope="col">Artiste</th>
-                    <th scope="col">Categorie</th>
+                    <th scope="col">Sorted By: </th>
+                    <th scope="col">
+                        <td ><Bouton onClick={() => handleSort('titre')}>Titre</Bouton></td>
+                    </th>
+                    <th scope="col"><Bouton onClick={() => handleSort('titre')}>Artist</Bouton></th>
+                    <th scope="col"><Bouton onClick={() => handleSort('titre')}>Categorie</Bouton></th>
                     <th scope="col">Liste de Commande</th>
                     <th scope="col">Option</th>
                 </tr>

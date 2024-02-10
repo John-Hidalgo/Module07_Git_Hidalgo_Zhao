@@ -11,7 +11,6 @@ import { updateTheCommande } from '../requestApi/panier_request.js'
 export default function ClientListeCommande () {
     const [listeCommande, setlisteCommande] = useState([])
     const [nomClient, setnomClient] = useState('')
-
     const afficherListes = async (e) => {
         e.preventDefault()
         try {
@@ -45,8 +44,6 @@ export default function ClientListeCommande () {
                 .catch((err) => { console.log(err.message) })
         }
     }
-
-
 
     return (
         <>

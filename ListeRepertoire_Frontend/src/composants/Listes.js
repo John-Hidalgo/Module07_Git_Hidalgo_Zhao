@@ -1,9 +1,10 @@
-import { React, useState } from "react"
+import { React, useState, useEffect } from "react"
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export function Listes ({ listes, handlClickDelete, handlClickEnvoyer }) {
+
     return (
         <Table className="table table-striped table-dark">
             <thead>
@@ -23,7 +24,7 @@ export function Listes ({ listes, handlClickDelete, handlClickEnvoyer }) {
                             <>
                                 <tr key={indexListe}>
                                     <td>
-                                        <h3 >Liste : {l.nomCommande}</h3 >
+                                        <h4 >{l.nomCommande}</h4 >
                                     </td>
                                     <td ></td>
                                     <td ></td>
