@@ -8,9 +8,9 @@ export function Client_Repo () {
     const [items, setItems] = useState([])
     const [selectedOptions, setSelectedOptions] = useState([])
     const [sortOrder, setSortOrder] = useState('asc')
-    const [filterValuetitre, setFilterValuetitre] = useState('')
+    const [filterValue, setFilterValue] = useState('')
     const [filteredArray, setFilterfilteredArray] = useState([])
-    const [motcle, setmotcle] = useState('')
+    const [niveau, setNiveau] = useState('')
 
 
     const handleSort = (key) => {
@@ -60,10 +60,10 @@ export function Client_Repo () {
             .catch(console.error)
     }
     const doFiltertitre = () => {
-        if (filterValuetitre !== '') {
+        if (filterValue !== '') {
             //filtre a partir de toutes les donnees dans [pieces]
             const filteredData = pieces.filter((item) => {
-                return item[motcle].toLowerCase().includes(filterValuetitre.toLowerCase())
+                return item[niveau].toLowerCase().includes(filterValue.toLowerCase())
             })
             setFilterfilteredArray(filteredData)
         } else {
@@ -90,9 +90,9 @@ export function Client_Repo () {
                 </tr>
                 <tr>
                     <th scope="col">rechercher : </th>
-                    <th scope="col"><input type="text" placeholder='mot cle pour titre' onChange={(e) => { setFilterValuetitre(e.target.value); setmotcle('titre') }} /></th>
-                    <th scope="col"><input type="text" placeholder='mot cle pour artiste' onChange={(e) => { setFilterValuetitre(e.target.value); setmotcle('artiste') }} /> </th>
-                    <th id=""><input type="text" placeholder='mot cle pour categorie' onChange={(e) => { setFilterValuetitre(e.target.value); setmotcle('categorie') }} /></th>
+                    <th scope="col"><input type="text" placeholder='mot cle pour titre' onChange={(e) => { setFilterValue(e.target.value); setNiveau('titre') }} /></th>
+                    <th scope="col"><input type="text" placeholder='mot cle pour artiste' onChange={(e) => { setFilterValue(e.target.value); setNiveau('artiste') }} /> </th>
+                    <th id=""><input type="text" placeholder='mot cle pour categorie' onChange={(e) => { setFilterValue(e.target.value); setNiveau('categorie') }} /></th>
                     <th scope="col"></th>
                     <th scope="col"><Bouton onClick={() => doFiltertitre()}>chercher</Bouton></th>
                 </tr>

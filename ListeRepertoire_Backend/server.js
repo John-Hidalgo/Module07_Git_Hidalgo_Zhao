@@ -23,7 +23,6 @@ app.delete('/api/commandes/:id/supprimer', DeleteUneCommande)
 //--------------------------------------------------------------------
 app.get('/api/clients', ObtiensClients)
 app.get('/api/clients/:id', ObtiensClient)
-// app.get('/api/clients/:nom/:motdePass', ObtiensClientByNom)
 app.post('/api/clients/ajouter', AjouterClient)
 app.post('/api/login', ObtiensClientByNom)
 app.put('/api/clients/:id/modifier', ModifierClient)

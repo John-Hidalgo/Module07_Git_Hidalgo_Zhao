@@ -47,7 +47,7 @@ export default function ClientListeCommande () {
 
     return (
         <>
-            <h4>Ma Liste</h4>
+            <h4>Liste:  {nomClient}</h4>
             <Container>
                 <Row>
                     <Col>

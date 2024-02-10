@@ -17,7 +17,7 @@ export const BarreNavigation = () => {
                         <Nav.Link href="/login">Login</Nav.Link>
                         {/* <Nav.Link href="/articles">Pieces</Nav.Link> */}
                         <Nav.Link href="/maliste">Ma Liste</Nav.Link>
-                        <Nav.Link href="/client-repo">Repo</Nav.Link>
+                        <Nav.Link href="/client-repo">Repertoire Client</Nav.Link>
                         <Nav.Link href="/client-liste">CreerListe</Nav.Link>
                         <Nav.Link href="/pieces">Répertoire Admin</Nav.Link>
                         <Nav.Link href="/commandes">Voir Les Commandes Admin</Nav.Link>
