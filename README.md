@@ -60,7 +60,7 @@ Sur Git, organisez vos travaux de manière à éviter de faire des commits en pa
 TP
 
 - pieces
-- demandes
+- commandes
 - clients
 ## Liste du taches
 
