@@ -91,13 +91,16 @@ TP
 
 ### John
 
-| tache     | temps |
-| --------- | ----- |
-| a remplir |       |
-| a remplir |       |
-| a remplir |       |
-| a remplir |       |
-| a remplir |       |
+| tache                                                                                           |  temps  |
+| ----------------------------------------------------------------------------------------------- | ------- |
+| Consulter les données de mon répertoire                                                         |   2h    |
+| Créer une pièce en lui spécifiant un titre, un artiste et une ou plusieurs catégories           | 45 mins |
+| Modifier les données d’une pièce existante                                                      |  5 mins |
+| Consulter toutes les demandes spéciales envoyées par les clients                                | 30 mins |
+| Capable d’étiqueter une demande traitée comme étant inactive                                    | 15 mins |
+| Capable de consulter uniquement les demandes spéciales actives                                  |  5 mins |
+| Capable de trier les demandes spéciales par date d’ajout selon l’ordre croissant ou décroissant | 25 mins |
+| Consulter les 5 pièces les plus demandées                                                       | 30 mins |
 
 ### ChangFeng
 
