@@ -48,7 +48,7 @@ async function addTheCommande (nomClient, ListeDemande, nomCommande) {
     }
 }
 
-async function updateTheCommande (_id, nomClient, ListeDemande, etat, date) {
+async function updateTheCommande (_id, nomClient, ListeDemande, etat, date, nomCommande) {
     try {
         const raw = await fetch(`/api/commandes/${_id}/modifier`, {
             method: "PUT",
@@ -57,7 +57,8 @@ async function updateTheCommande (_id, nomClient, ListeDemande, etat, date) {
                 nomClient: nomClient,
                 etat: etat,
                 date: date,
-                ListeDemande: ListeDemande
+                ListeDemande: ListeDemande,
+                nomCommande: nomCommande
             }),
         })
         console.log(raw.json())

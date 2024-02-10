@@ -1,9 +1,9 @@
-import React from "react"
+import { React, useState } from "react"
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-export function Listes ({ listes, handlClickDelete }) {
+export function Listes ({ listes, handlClickDelete, handlClickEnvoyer }) {
     return (
         <Table className="table table-striped table-dark">
             <thead>
@@ -46,7 +46,18 @@ export function Listes ({ listes, handlClickDelete }) {
                                             </tr>
                                         )
                                     })
+
                                 }
+                                <tr key={indexListe}>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td >
+                                        <Button alt={indexListe} variant="primary" onClick={() => handlClickEnvoyer(indexListe)} size="sm" className="m-1">Envoyer</Button>
+                                    </td>
+                                </tr>
                             </>
                         )
                     }

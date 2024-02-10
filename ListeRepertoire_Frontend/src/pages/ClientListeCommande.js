@@ -36,6 +36,18 @@ export default function ClientListeCommande () {
                 .catch((err) => { console.log(err.message) })
         }
     })
+
+    const envoyerListe = (indexListe) => {
+        const demande = listeCommande[indexListe]
+        const etatActif = 1    // mettre en etat actif pour simuler envoyer une liste
+        if (window.confirm("Voulez-vous supprimer cet article?")) {
+            updateTheCommande(demande._id, demande.nomClient, demande.ListeDemande, etatActif, demande.date)
+                .catch((err) => { console.log(err.message) })
+        }
+    }
+
+
+
     return (
         <>
             <h4>Ma Liste</h4>
@@ -63,7 +75,7 @@ export default function ClientListeCommande () {
                         </Form>
                     </Col>
                 </Row>
-                <Listes listes={listeCommande.map(d => { return { ListeDemande: d.ListeDemande, nomCommande: d.nomCommande } })} handlClickDelete={deletePiece} />
+                <Listes listes={listeCommande.map(d => { return { ListeDemande: d.ListeDemande, nomCommande: d.nomCommande } })} handlClickDelete={deletePiece} handlClickEnvoyer={envoyerListe} />
             </Container >
         </>
     )
