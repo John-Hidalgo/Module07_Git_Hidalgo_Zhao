@@ -1,119 +1,191 @@
 [
   {
-    "titre": "My life",
-    "artiste": "DJ NoName",
-    "categorie": "Électronica"
-  },
-  {
+    "_id": {
+      "$oid": "65b99e93e154377378f6feba"
+    },
     "titre": "Growing Up",
     "artiste": "A.L.E.X",
-    "categorie": "LoFi"
+    "categorie": "LoFi",
+    "url": "Berlin_Love_Life.png"
   },
   {
+    "_id": {
+      "$oid": "65b99e93e154377378f6febb"
+    },
     "titre": "Cities Of The Future",
     "artiste": "Infected Mushroom",
-    "categorie": "Électronica"
+    "categorie": "Électronica",
+    "url": "batt1.jpeg"
   },
   {
-    "titre": "Gamma Goblins",
-    "artiste": "Infected Mushroom",
-    "categorie": "Électronica"
-  },
-  {
-    "titre": "Hard days",
-    "artiste": "Loupol",
-    "categorie": "Rock"
-  },
-  {
-    "titre": "Money",
-    "artiste": "Pink Floyd",
-    "categorie": "Rock"
-  },
-  {
+    "_id": {
+      "$oid": "65b99e93e154377378f6febf"
+    },
     "titre": "Betrayal",
     "artiste": "Céline Dion",
-    "categorie": "Pop"
+    "categorie": "Pop",
+    "url": "Berlin_Love_Life.png"
   },
   {
+    "_id": {
+      "$oid": "65b99e93e154377378f6fec0"
+    },
     "titre": "Goes On",
     "artiste": "Céline Dion",
-    "categorie": "Soft"
+    "categorie": "Soft",
+    "url": "fallingintoyou.jpg"
   },
   {
-    "titre": "Sad World",
-    "artiste": "Céline Dion",
-    "categorie": "Variété francaise"
-  },
-  {
+    "_id": {
+      "$oid": "65b99e93e154377378f6fec2"
+    },
     "titre": "Red flowers",
     "artiste": "Hipster2.0",
-    "categorie": "Emo"
+    "categorie": "Emo",
+    "url": "Plusbleu.jpeg"
   },
   {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fec8"
+    },
+    "titre": "",
+    "artiste": "",
+    "categorie": "vevsdvvdfv",
+    "url": "enr122.png"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fec9"
+    },
+    "titre": "Growing Up",
+    "artiste": "A.L.E.X",
+    "categorie": "LoFi",
+    "url": "onew.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6feca"
+    },
+    "titre": "Cities Of The Future",
+    "artiste": "Infected Mushroom",
+    "categorie": "Électronica",
+    "url": "believe.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fecb"
+    },
+    "titre": "Gamma Goblins",
+    "artiste": "Infected Mushroom",
+    "categorie": "Électronica",
+    "url": "colors.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fecc"
+    },
+    "titre": "Hard days",
+    "artiste": "Loupol",
+    "categorie": "Rock",
+    "url": "others.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fecd"
+    },
+    "titre": "Money",
+    "artiste": "Pink Floyd",
+    "categorie": "Rock",
+    "url": "colors2.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fece"
+    },
+    "titre": "Betrayal",
+    "artiste": "Céline Dion",
+    "categorie": "Pop",
+    "url": "nancy1.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fecf"
+    },
+    "titre": "Goes On",
+    "artiste": "Céline Dion",
+    "categorie": "Soft",
+    "url": "fairuz3.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fed0"
+    },
+    "titre": "Sad World",
+    "artiste": "Céline Dion",
+    "categorie": "Variété française",
+    "url": "wala2.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fed1"
+    },
+    "titre": "Red flowers",
+    "artiste": "Hipster2.0",
+    "categorie": "Emo",
+    "url": "femmes2.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fed2"
+    },
     "titre": "Loser",
     "artiste": "Hipster2.0",
-    "categorie": "Emo"
+    "categorie": "Emo",
+    "url": "france1.png"
   },
   {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fed3"
+    },
     "titre": "Sunny",
     "artiste": "The Good Band",
-    "categorie": "Pop"
+    "categorie": "Pop",
+    "url": "batt1.jpeg"
   },
   {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fed4"
+    },
     "titre": "My Girl",
     "artiste": "Motown",
-    "categorie": "Soul"
+    "categorie": "Soul",
+    "url": "Berlin_Love_Life.png"
   },
   {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fed5"
+    },
     "titre": "Strawberry Letter 23",
     "artiste": "The Brothers Johnson",
-    "categorie": "Soul"
+    "categorie": "Soul",
+    "url": "fallingintoyou.jpg"
   },
   {
+    "_id": {
+      "$oid": "65b9ac2be154377378f6fed6"
+    },
     "titre": "Stomp!",
     "artiste": "The Brothers Johnson",
-    "categorie": "Soul"
+    "categorie": "Soul",
+    "url": "france1.png"
   },
   {
-    "titre": "Sultans of Swing",
-    "artiste": "Dire Straits",
-    "categorie": ["Rock", "Blues"]
-  },
-  {
-    "titre": "Money for Nothing",
-    "artiste": "Dire Straits",
-    "categorie": ["Rock"]
-  },
-  {
-    "titre": "Hey Jude",
-    "artiste": "The Beatles",
-    "categorie": ["Rock", "Pop"]
-  },
-  {
-    "titre": "Let It Be",
-    "artiste": "The Beatles",
-    "categorie": ["Rock", "Ballad"]
-  },
-  {
-    "titre": "Space Oddity",
-    "artiste": "David Bowie",
-    "categorie": ["Rock", "Space"]
-  },
-  {
-    "titre": "Heroes",
-    "artiste": "David Bowie",
-    "categorie": ["Rock", "Alternative"]
-  },
-  {
-    "titre": "My Girl",
-    "artiste": "Chilliwack",
-    "categorie": ["Rock", "Pop"]
-  },
-  {
-    "titre": "Whatcha Gonna Do",
-    "artiste": "Chilliwack",
-    "categorie": ["Rock"]
+    "_id": {
+      "$oid": "65c45663292554de2b73a9c2"
+    },
+    "titre": "aaaaaaa",
+    "artiste": "verveveerfrev",
+    "categorie": "veverhrtnrnrt",
+    "url": "others.jpg"
   }
 ]
-
-
