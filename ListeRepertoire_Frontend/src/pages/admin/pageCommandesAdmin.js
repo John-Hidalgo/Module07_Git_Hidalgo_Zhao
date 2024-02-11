@@ -23,42 +23,45 @@ const PageCommandesAdmin = () => {
     }, [delaiNomFiltre])
     useEffect(() => {
         const fetchInitiale = async () => {
-            const data = await ObtiensCommandes()
+            const data = await ObtiensCommandes();
             setCommandes(data)
         }
-        fetchInitiale()
+        fetchInitiale();
     }, [])
-    const GererDesactiverCommande = async (_id) => {
-        DesactiverCommande(_id, setCommandes, ObtiensCommandes)
+    const GererDesactiverCommande = async (_id) => 
+    {
+        DesactiverCommande(_id, setCommandes, ObtiensCommandes);
     }
-    const GererTrierParDate = () => {
-        TrierCommandesParDate(commandes, ascendingOrder, setCommandes, setAscendingOrder, setTexteBouton)
+    const GererTrierParDate = () => 
+    {
+        TrierCommandesParDate(commandes, ascendingOrder, setCommandes, setAscendingOrder, setTexteBouton);
     }
-    const FiltrerParNom = async () => {
+    const FiltrerParNom = async () => 
+    {
         if (nomFiltre !== '') {
-            console.log('nonempty')
-            const nomFiltreLower = nomFiltre.toLowerCase()
-            const commandesFiltrees = commandes.filter((commande) =>
-                commande.nomClient.toLowerCase().includes(nomFiltreLower)
-            )
-            setCommandes(commandesFiltrees)
+            console.log('nonempty');
+            const nomFiltreLower = nomFiltre.toLowerCase();
+            const commandesFiltrees = commandes.filter((commande) => commande.nomClient.toLowerCase().includes(nomFiltreLower));
+            setCommandes(commandesFiltrees);
         }
-        else {
-            console.log('empty')
-            const data = await ObtiensCommandes()
-            setCommandes(data)
+        else 
+        {
+            console.log('empty');
+            const data = await ObtiensCommandes();
+            console.log(data)
+            setCommandes(data);
         }
     }
 
     const GererChangementFiltre = (e) => {
         setNomFiltre(e.target.value)
-        FiltrerParNom()
+        FiltrerParNom();
     }
     const GererVoirCommandesInactif = () => {
-        navigate(`/commandesInactif`)
+        navigate(`/commandesInactif`);
     }
     const GererVoirTopCinque = () => {
-        navigate(`/topCinque`)
+        navigate(`/topCinque`);
     }
     return (
         <Container>
@@ -95,13 +98,12 @@ const PageCommandesAdmin = () => {
                         <ListGroup>
 
                             Pièces commandées :
-                            {commande.ListeDemande.map((demande, i) => (
-
+                            {commande.ListeDemande.map((commande, i) => (
                                 <ListGroupItem key={i}>
-                                    <strong>{demande.titre}</strong> par <strong>{demande.artiste}</strong>{" "}
-                                    {Array.isArray(demande.categorie) ?
-                                        `Genres: ${demande.categorie.join(', ')}` :
-                                        `Genre: ${demande.categorie}`}
+                                    <strong>{commande.titre}</strong> par <strong>{commande.artiste}</strong>{" "}
+                                    {Array.isArray(commande.categorie) ?
+                                        `Genres: ${commande.categorie.join(', ')}` :
+                                        `Genre: ${commande.categorie}`}
                                 </ListGroupItem>
                             ))}
 

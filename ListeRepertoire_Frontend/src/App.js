@@ -1,7 +1,6 @@
 import logo from './logo.svg'
 import './App.css'
 import { Accueil } from './pages/Accueil'
-import { Admin } from './pages/Admin'
 import { Inscription } from './pages/Inscription.js'
 import { ClientLogin } from './pages/ClientLogin.js'
 import { Ajouter } from './pages/Ajouter'
@@ -32,7 +31,7 @@ function App () {
         <BarreNavigation />
         <Routes>
           <Route path="/" element={<Accueil />} />
-          <Route path="/admin" element={<Admin />} />
+          {/* <Route path="/admin" element={<Admin />} /> */}
           <Route path="/inscrire" element={<Inscription />} />
           <Route path="/login" element={<ClientLogin />} />
           {/* <Route path="/articles" element={<PageRepertoireClients />} /> */}

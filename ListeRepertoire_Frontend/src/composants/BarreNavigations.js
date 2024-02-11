@@ -2,7 +2,6 @@ import React from 'react'
 import Container from 'react-bootstrap/Container'
 import { Navbar } from 'react-bootstrap'
 import { Nav } from 'react-bootstrap'
-// import 'bootstrap/dist/css/bootstrap.min.css'
 
 export const BarreNavigation = () => {
     return (
@@ -11,11 +10,9 @@ export const BarreNavigation = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/admin">Admin</Nav.Link>
-                        <Nav.Link href="/inscrire">Inscrire</Nav.Link>
-                        <Nav.Link href="/login">Login</Nav.Link>
-                        {/* <Nav.Link href="/articles">Pieces</Nav.Link> */}
+                        <Nav.Link href="/">Accueil</Nav.Link>
+                        <Nav.Link href="/inscrire">S'Inscrire</Nav.Link>
+                        <Nav.Link href="/login">Se connecter</Nav.Link>
                         <Nav.Link href="/maliste">Ma Liste</Nav.Link>
                         <Nav.Link href="/client-repo">Repertoire Client</Nav.Link>
                         <Nav.Link href="/client-liste">CreerListe</Nav.Link>

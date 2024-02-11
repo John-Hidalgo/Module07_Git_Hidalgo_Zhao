@@ -47,7 +47,9 @@ async function ObtiensClientByNom (requete, reponse) {
         const infoClient = await BD.collection('clients').findOne({ nom: nom, password: password })
         if (infoClient) {
             reponse.status(200).json(infoClient)
-        } else {
+        } else
+        {
+            console.log(reponse);
             res.status(401).json({ error: 'Login Failed!' })
         }
     }, reponse)
@@ -182,7 +184,7 @@ async function AjouterUneCommande (requete, reponse) {
     const { nomClient, ListeDemande, etat, date, nomCommande } = requete.body
     nomClient !== undefined && ListeDemande !== undefined && etat != undefined && date != undefined && nomCommande != undefined ?
         UtiliserBD(async (BD) => {
-            await BD.collection('demandes').insertOne({
+            await BD.collection('commandes').insertOne({
                 nomClient,
                 ListeDemande,
                 etat,
@@ -191,12 +193,12 @@ async function AjouterUneCommande (requete, reponse) {
             })
             reponse.status(200).send("Commande ajoutee")
         }, reponse).catch(() => reponse.status(500).send("Erreur : la Commande n'a pas ete ajoutee"))
-        : reponse.status(400).send(`Certains parametres ne sont pas definis: - client: ${nomClient} - liste_demandes: ${ListeDemande} - liste_nom: ${liste_nom}- etat: ${etat} -date : ${date}`)
+        : reponse.status(400).send(`Certains parametres ne sont pas definis: - client: ${nomClient} - liste_commandes: ${ListeDemande} - liste_nom: ${liste_nom}- etat: ${etat} -date : ${date}`)
 }
 async function TrouverUneCommande (requete, reponse) {
     UtiliserBD(async (BD) => {
         const idListe = requete.params.id
-        const liste = await BD.collection('demandes').findOne({ _id: new ObjectId(idListe) })
+        const liste = await BD.collection('commandes').findOne({ _id: new ObjectId(idListe) })
         reponse.status(200).json(liste)
     }, reponse)
 }
@@ -210,12 +212,12 @@ async function ModifierAjouterUnePieceDansCommande (requete, reponse) {
             updateObject.artiste = artiste
             updateObject.categorie = categorie
             //根据id找到源liste
-            const ele = await BD.collection('demandes').findOne({ nomCommande: nomCommande })
+            const ele = await BD.collection('commandes').findOne({ nomCommande: nomCommande })
             const oldList = ele['ListeDemande']
             //update en Rajoutant
             oldList.push(updateObject)
             console.log(oldList)
-            const result = await BD.collection('demandes').updateOne({ nomCommande: nomCommande }, { $set: { "ListeDemande": oldList } })
+            const result = await BD.collection('commandes').updateOne({ nomCommande: nomCommande }, { $set: { "ListeDemande": oldList } })
             if (result.modifiedCount > 0) {
                 reponse.status(200).send("Liste modifiee avec succes")
             }
@@ -239,7 +241,7 @@ async function ModifierCommande (requete, reponse) {
                 updateObject.ListeDemande = ListeDemande
                 updateObject.etat = etat
                 updateObject.date = date
-                const result = await BD.collection('demandes').updateOne({ _id: new ObjectId(idCommande) }, { $set: updateObject })
+                const result = await BD.collection('commandes').updateOne({ _id: new ObjectId(idCommande) }, { $set: updateObject })
                 if (result.modifiedCount > 0) {
                     reponse.status(200).send("Commande modifiee avec succes")
                 }
@@ -254,27 +256,27 @@ async function ModifierCommande (requete, reponse) {
 }
 async function GererObtiensCommandes (req, rep) {
     UtiliserBD(async (db) => {
-        const commandes = await db.collection('demandes').find().toArray()
+        const commandes = await db.collection('commandes').find().toArray()
         rep.status(200).json(commandes)
     }, rep)
 }
 async function ObtiensCommandesClient (requete, reponse) {
     UtiliserBD(async (BD) => {
         const nomClient = requete.params.nomClient
-        const liste = await BD.collection('demandes').find({ nomClient: nomClient }).toArray()
+        const liste = await BD.collection('commandes').find({ nomClient: nomClient }).toArray()
         reponse.status(200).json(liste)
     }, reponse)
 }
 async function GererObtiensCommandesActif (req, rep) {
     UtiliserBD(async (db) => {
-        const commandes = await db.collection('demandes').find({ 'etat': '0' }).toArray()
+        const commandes = await db.collection('commandes').find({ 'etat': '0' }).toArray()
         rep.status(200).json(commandes)
     }, rep)
 }
 async function GererMetsCommandesInactif (req, rep) {
     const commandeId = req.params.id
     UtiliserBD(async (db) => {
-        const result = await db.collection('demandes').updateOne(
+        const result = await db.collection('commandes').updateOne(
             { "_id": new ObjectId(commandeId) },
             { $set: { "etat": '1' } }
         )
@@ -291,7 +293,7 @@ async function DeleteUneCommande (requete, reponse) {
     const { id: commandeID } = requete.params
     if (commandeID !== undefined && commandeID !== "") {
         UtiliserBD(async (db) => {
-            const resultat = await db.collection('demandes').deleteOne({ _id: new ObjectId(commandeID) })
+            const resultat = await db.collection('commandes').deleteOne({ _id: new ObjectId(commandeID) })
 
             if (resultat.deletedCount === 1) {
                 reponse.status(200).send(`${resultat.deletedCount} commande supprime`)
@@ -311,8 +313,8 @@ async function UtiliserBD (operations, reponse) {
     try {
         const client = await MongoClient.connect('mongodb://0.0.0.0:27017')
         console.log('Connected to MongoDB')
-        // const BD = client.db('repertoire');
-        const BD = client.db('Module07')
+        const BD = client.db('repertoire');
+        //const BD = client.db('Module07')
         console.log('Selected database: repertoire')
         await operations(BD)
         client.close()
