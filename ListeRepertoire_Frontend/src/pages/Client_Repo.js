@@ -104,7 +104,12 @@ export function Client_Repo () {
                             <th>{index + 1}</th>
                             <td id={index + "titre"}>{p.titre}</td>
                             <td id={index + "artiste"}>{p.artiste}</td>
-                            <td id={index + "categorie"}>{p.categorie}</td>
+                            <td id={index + "categories"}>
+                                {Array.isArray(p.categorie) && p.categorie.length > 1 ? (
+                                    p.categorie.join(', ')) : (
+                                    p.categorie
+                                )}
+                            </td>
                             <td id={index + 'selected'}>
                                 <select id={index + p.titre} value={selectedOptions[index] || ''} className="form-control" onChange={(event) => handleSelectChange(event, index)} name="liste">
                                     {
