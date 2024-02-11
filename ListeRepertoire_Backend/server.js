@@ -13,7 +13,7 @@ app.delete('/api/pieces/:id/supprimer', GererSupprimerUnePiece)
 //--------------------------------------------------------------------
 app.get('/api/commandes', GererObtiensCommandes)
 app.get('/api/commandes/:nomClient', ObtiensCommandesClient)
-app.get('/api/commandes/actif', GererObtiensCommandesActif)
+app.get('/api/commandesActives', GererObtiensCommandesActif)
 app.get('/api/commandes/:id', TrouverUneCommande)
 app.post('/api/commandes/ajouter', AjouterUneCommande)
 app.put('/api/commandes/:id/inactif', GererMetsCommandesInactif)
@@ -267,9 +267,14 @@ async function ObtiensCommandesClient (requete, reponse) {
         reponse.status(200).json(liste)
     }, reponse)
 }
-async function GererObtiensCommandesActif (req, rep) {
+async function GererObtiensCommandesActif(req, rep) 
+{
+    console.log('Inside GererObtiensCommandesActif route');
     UtiliserBD(async (db) => {
-        const commandes = await db.collection('commandes').find({ 'etat': '0' }).toArray()
+            //console.log('Before database query');
+            const commandes = await db.collection('commandes').find({'etat': 0}).toArray();
+            //console.log('After database query');
+            //console.log(commandes);
         rep.status(200).json(commandes)
     }, rep)
 }
@@ -314,7 +319,7 @@ async function UtiliserBD (operations, reponse) {
         const client = await MongoClient.connect('mongodb://0.0.0.0:27017')
         console.log('Connected to MongoDB')
         const BD = client.db('bdtp');
-        console.log('Selected database: repertoire')
+        console.log('Selected database: bdtp')
         await operations(BD)
         client.close()
         console.log('Connection closed')
