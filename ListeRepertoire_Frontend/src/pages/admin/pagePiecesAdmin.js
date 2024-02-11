@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ObtiensPieces from '../../composants/ObtiensPieces.js';
 import EffacerPiece from '../../composants/EffacerPiece.js';
 import { Button, ListGroup } from 'react-bootstrap';
@@ -20,14 +20,17 @@ const PagePiecesAdmin = () =>
     {
         history(`/modifier-piece/${_id}`);
     }
-
+    const GererAjouterPiece = () =>
+    {
+      history(`/piecesAjouter`);
+    }
     const GererEffacerPiece = async (_id) =>
     {
         EffacerPiece(_id,setPieces,ObtiensPieces)
     }
   return (
     <div>
-      <h2>Liste du repertoire</h2>
+      <h2>Liste du repertoire</h2> <Button onClick={() => GererAjouterPiece()}> Ajoutez une piece </Button>
       <ListGroup>
         {pieces.map((p) => (
           <ListGroup.Item key={p._id}>

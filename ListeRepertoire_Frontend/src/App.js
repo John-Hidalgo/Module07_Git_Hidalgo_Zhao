@@ -31,11 +31,8 @@ function App () {
         <BarreNavigation />
         <Routes>
           <Route path="/" element={<Accueil />} />
-          {/* <Route path="/admin" element={<Admin />} /> */}
           <Route path="/inscrire" element={<Inscription />} />
           <Route path="/login" element={<ClientLogin />} />
-          {/* <Route path="/articles" element={<PageRepertoireClients />} /> */}
-          {/* <Route path="/ajouter" element={<Ajouter />} /> */}
           <Route path="/client-repo" element={<Client_Repo />} />
           <Route path="/client-liste" element={<Client_Creer_Liste />} />
           <Route path="/maliste" element={<ClientListeCommande />} />
