@@ -313,8 +313,7 @@ async function UtiliserBD (operations, reponse) {
     try {
         const client = await MongoClient.connect('mongodb://0.0.0.0:27017')
         console.log('Connected to MongoDB')
-        const BD = client.db('repertoire');
-        //const BD = client.db('Module07')
+        const BD = client.db('bdtp');
         console.log('Selected database: repertoire')
         await operations(BD)
         client.close()

@@ -57,11 +57,15 @@ Sur Git, organisez vos travaux de manière à éviter de faire des commits en pa
 
 ## Structure du DB
 
-TP
+Veuillez suivre ces instructions pour construire la base de données dont dépend cette application React. Veuillez créer une base de données nommée bdtp. Ajoutez ensuite des collections nommée pieces, commandes et clients. Enfin, vous pouvez importer les données dans les collections repertoire.json pour la collection pieces, commandes.json pour la collection commandes et clients.json pour la collection clients.
+
+Nom de la base de données: bdtp
+les collections:
 
 - pieces
 - commandes
 - clients
+
 ## Liste du taches
 
 | db       | method | api                         | fonction |
