@@ -7,7 +7,7 @@ const TopCinquePiece = () =>
     const repertoire = Repertoire();
     console.log(repertoire);
     const commandes = Commandes().map(c => c.ListeDemande).flat();
-    console.log(commandes);
+    console.log("within page component",commandes);
     const titreCountMap = new Map();
     commandes.forEach((demande) => {
     const { titre } = demande;
