@@ -85,3 +85,30 @@ export {
     GererModifierUnePiece,
     GererSupprimerUnePiece
 };
+    
+    const nomsDePhotos = [
+    "batt1.jpeg",
+    "Berlin_Love_Life.png",
+    "fallingintoyou.jpg",
+    "believe.jpg",
+    "enr122.png",
+    "onew.jpg",
+    "believe.jpg",
+    "colors.jpg",
+    "others.jpg",
+    "colors2.jpg",
+    "nancy1.jpg",
+    "fairuz3.jpg",
+    "wala2.jpg",
+    "femmes2.jpg",
+    "france1.png",
+    "Plusbleu.jpeg",
+    "fairuz3.jpg"
+]
+
+function getUrlRandom () {
+    return nomsDePhotos[getRandomNumber(0, nomsDePhotos.length - 1)]
+}
+function getRandomNumber (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
