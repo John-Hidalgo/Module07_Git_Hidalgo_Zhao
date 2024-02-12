@@ -2,7 +2,8 @@ import React from "react"
 import Table from 'react-bootstrap/Table'
 import { useEffect, useState } from "react"
 import Bouton from 'react-bootstrap/Button'
-import LesCommandes from '../composants/LesCommandes.js'
+import { useTranslation } from "react-i18next"
+
 export function Client_Repo () {
     const [pieces, setrepo] = useState([])
     const [items, setItems] = useState([])
@@ -12,6 +13,7 @@ export function Client_Repo () {
     const [filteredArray, setFilterfilteredArray] = useState([])
     const [niveau, setNiveau] = useState('')
 
+    const { t } = useTranslation()
 
     const handleSort = (key) => {
         // console.log(key)
@@ -81,7 +83,7 @@ export function Client_Repo () {
                 <tr>
                     <th scope="col">Sorted By: </th>
                     <th scope="col">
-                        <Bouton onClick={() => handleSort('titre')}>Titre</Bouton>
+                        <Bouton onClick={() => handleSort('titre')}>{t('titre')}</Bouton>
                     </th>
                     <th scope="col"><Bouton onClick={() => handleSort('artiste')}>Artist</Bouton></th>
                     <th scope="col"><Bouton onClick={() => handleSort('categorie')}>Categorie</Bouton></th>
@@ -116,7 +118,7 @@ export function Client_Repo () {
                             </td>
                             <td ><Bouton onClick={() => {
                                 ajouter(p.titre, p.artiste, p.categorie, index)
-                            }}>Ajouter</Bouton></td>
+                            }}>{t('ajouter')}</Bouton></td>
                         </tr>
                     )
                 })}

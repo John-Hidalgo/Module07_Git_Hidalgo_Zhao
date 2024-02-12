@@ -1,4 +1,3 @@
-import logo from './logo.svg'
 import './App.css'
 import { Accueil } from './pages/Accueil'
 import { Admin } from './pages/Admin'
@@ -15,7 +14,7 @@ import PageCommandesAdmin from './pages/admin/pageCommandesAdmin.js'
 import TopCinquePiece from './pages/admin/TopCinqePiece.js'
 import PageCommandesActifAdmin from './pages/admin/pageCommandesActifAdmin.js'
 import PageModifierPieceAdmin from './pages/admin/pageModiferUnePiece.js'
-
+import Langage from './composants/Langage.js'
 //Router
 import {
   BrowserRouter,
@@ -30,6 +29,7 @@ function App () {
     <BrowserRouter>
       <Container>
         <BarreNavigation />
+        <Langage />
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/admin" element={<Admin />} />
