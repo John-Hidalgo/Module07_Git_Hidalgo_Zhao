@@ -9,9 +9,9 @@ const CommandesActifs = () =>
             try
             {
                 //console.log("calling fetch");
-                const reponse = await fetch('/api/commandes/actif');
+                const reponse = await fetch('/api/commandesActives');
                 const data = await reponse.json();
-                //console.log(data)
+                console.log(data)
                 setCommandes(data);
             }
             catch (erreur)

@@ -5,7 +5,7 @@ const Repertoire = () => {
     useEffect(() => {
         const obtiensPieces = async () => {
             try {
-                console.log("calling fetch")
+                //console.log("calling fetch")
                 const reponse = await fetch('/api/pieces')
                 const data = await reponse.json()
                 setPieces(data)

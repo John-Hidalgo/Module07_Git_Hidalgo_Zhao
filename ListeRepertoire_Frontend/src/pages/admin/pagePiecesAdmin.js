@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ObtiensPieces from '../../composants/ObtiensPieces.js';
 import EffacerPiece from '../../composants/EffacerPiece.js';
-import { Button, ListGroup } from 'react-bootstrap';
+import { Button, Container, ListGroup } from 'react-bootstrap';
 const PagePiecesAdmin = () => 
 {
     const history = useNavigate();
@@ -20,14 +19,19 @@ const PagePiecesAdmin = () =>
     {
         history(`/modifier-piece/${_id}`);
     }
-
+    const GererAjouterPiece = () =>
+    {
+      history(`/piecesAjouter`);
+    }
     const GererEffacerPiece = async (_id) =>
     {
         EffacerPiece(_id,setPieces,ObtiensPieces)
     }
   return (
-    <div>
-      <h2>Liste du repertoire</h2>
+    <Container>
+      <br />
+      <h2 style={{ display: 'inline-block' }}>Votre répertoire</h2> <Button style={{ display: 'inline-block' }} onClick={() => GererAjouterPiece()}> Ajoutez une piéce </Button>
+      <br /><br />
       <ListGroup>
         {pieces.map((p) => (
           <ListGroup.Item key={p._id}>
@@ -41,7 +45,7 @@ const PagePiecesAdmin = () =>
           </ListGroup.Item>
         ))}
       </ListGroup>
-    </div>
+    </Container>
   );
 }
 

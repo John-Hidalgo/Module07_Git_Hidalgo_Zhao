@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export function Listes ({ listes, handlClickDelete, handlClickEnvoyer }) {
-
+    console.log(listes)
     return (
         <Table className="table table-striped table-dark">
             <thead>
@@ -19,7 +19,7 @@ export function Listes ({ listes, handlClickDelete, handlClickEnvoyer }) {
             </thead>
             <tbody>
                 {listes.map((l, indexListe) => {
-                    if (l.ListeDemande[0].titre !== undefined) {
+                    if (l.ListeDemande.length !== 0) {
                         return (
                             <>
                                 <tr key={indexListe}>

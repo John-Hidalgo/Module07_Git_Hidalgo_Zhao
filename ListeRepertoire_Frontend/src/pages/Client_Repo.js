@@ -8,6 +8,7 @@ export function Client_Repo () {
     const [pieces, setrepo] = useState([])
     const [items, setItems] = useState([])
     const [selectedOptions, setSelectedOptions] = useState([])
+
     const [sortOrder, setSortOrder] = useState('asc')
     const [filterValue, setFilterValue] = useState('')
     const [filteredArray, setFilterfilteredArray] = useState([])
@@ -73,6 +74,7 @@ export function Client_Repo () {
         }
     }
     const handleSelectChange = (event, index) => {
+        // alert(index)
         const updatedOptions = [...selectedOptions]
         updatedOptions[index] = event.target.value
         setSelectedOptions(updatedOptions)
@@ -106,9 +108,15 @@ export function Client_Repo () {
                             <th>{index + 1}</th>
                             <td id={index + "titre"}>{p.titre}</td>
                             <td id={index + "artiste"}>{p.artiste}</td>
-                            <td id={index + "categorie"}>{p.categorie}</td>
+                            <td id={index + "categories"}>
+                                {Array.isArray(p.categorie) && p.categorie.length > 1 ? (
+                                    p.categorie.join(', ')) : (
+                                    p.categorie
+                                )}
+                            </td>
                             <td id={index + 'selected'}>
                                 <select id={index + p.titre} value={selectedOptions[index] || ''} className="form-control" onChange={(event) => handleSelectChange(event, index)} name="liste">
+                                    <option key='defaultOp' value='-1' id='default-op'>choisir une liste</option>
                                     {
                                         items.map((i, index) => {
                                             return <option key={index} value={i.nomCommande} id={index + "alb"}>{i.nomCommande}</option>

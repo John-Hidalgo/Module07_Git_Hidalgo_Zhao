@@ -34,7 +34,7 @@ async function addTheCommande (nomClient, ListeDemande, nomCommande) {
             body: JSON.stringify({
                 nomClient: nomClient,
                 ListeDemande: ListeDemande,
-                etat: "1",
+                etat: "0",
                 date: formatDate(),
                 nomCommande: nomCommande
             }),
